@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/bus/select_bus_screen.dart';
 import 'package:uniexpress/login/login_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: LoginScreen(),
+        body: SelectBusScreen(),
       ),
     );
   }
