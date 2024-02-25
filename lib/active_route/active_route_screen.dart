@@ -16,11 +16,7 @@ class ActiveRouteScreen extends StatelessWidget {
       children: [
         HeaderView(
           height: headerHeight,
-          child: Column(
-            children: [
-              _headerContent(headerHeight),
-            ],
-          ),
+          child: _headerContent(headerHeight),
         ),
         _ContentViewSelectRoute(
           borderRadius: borderRadius,
