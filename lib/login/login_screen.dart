@@ -71,61 +71,70 @@ class _ContentView extends StatelessWidget {
       ),
       boxShadow: const [
         BoxShadow(
-          offset: Offset(40, 0),
+          offset: Offset(0, -16),
           color: Color.fromRGBO(14, 16, 40, 0.25),
-          spreadRadius: 29,
-          blurRadius: 32,
+          // color: Colors.red,
+          spreadRadius: -10,
+          blurRadius: 20,
         )
       ],
     );
 
-    return Padding(
-      padding: EdgeInsets.only(top: headerHeight - (borderRadius * 2)),
-      child: Container(
-        width: double.infinity,
-        decoration: boxDecoration,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              const Text(
-                'Iniciar Sesión',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
-                  color: Constants.primaryColor,
+    return SingleChildScrollView(
+      physics: const ClampingScrollPhysics(),
+      child: Padding(
+        padding: EdgeInsets.only(top: headerHeight - (borderRadius * 2)),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 420,
+              decoration: boxDecoration,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Iniciar Sesión',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w600,
+                        color: Constants.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const TextFieldView(
+                      title: 'Correo Electrónico',
+                      placeholder: 'correo@gmail.com',
+                    ),
+                    const SizedBox(height: 24),
+                    const TextFieldView(
+                      title: 'Contraseña',
+                      placeholder: 'Contraseña',
+                      obscureText: true,
+                    ),
+                    const SizedBox(height: 40),
+                    CustomButton(
+                      title: 'Iniciar Sesión',
+                      onPressed: () {
+                        debugPrint('login pressed');
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    CustomButton(
+                      title: 'Restablecer contraseña',
+                      isTransparent: true,
+                      onPressed: () {
+                        debugPrint('contraseña presionado');
+                      },
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 30),
-              const TextFieldView(
-                title: 'Correo Electrónico',
-                placeholder: 'correo@gmail.com',
-              ),
-              const SizedBox(height: 24),
-              const TextFieldView(
-                title: 'Contraseña',
-                placeholder: 'Contraseña',
-                obscureText: true,
-              ),
-              const SizedBox(height: 40),
-              CustomButton(
-                title: 'Iniciar Sesión',
-                onPressed: () {
-                  debugPrint('login pressed');
-                },
-              ),
-              const SizedBox(height: 8),
-              CustomButton(
-                title: 'Restablecer contraseña',
-                isTransparent: true,
-                onPressed: () {
-                  debugPrint('contraseña presionado');
-                },
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
