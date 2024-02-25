@@ -71,31 +71,31 @@ class _ContentView extends StatelessWidget {
       ),
       boxShadow: const [
         BoxShadow(
-          offset: Offset(0, -16),
+          offset: Offset(30, 16),
           color: Color.fromRGBO(14, 16, 40, 0.25),
-          // color: Colors.red,
-          spreadRadius: -10,
+          spreadRadius: 29,
           blurRadius: 20,
         )
       ],
     );
 
     return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
       child: Padding(
-        padding: EdgeInsets.only(top: headerHeight - (borderRadius * 2)),
+        padding: EdgeInsets.only(top: headerHeight - (borderRadius)),
         child: Column(
           children: [
             Container(
-              width: double.infinity,
-              height: 420,
+              height: borderRadius,
               decoration: boxDecoration,
+            ),
+            Container(
+              width: double.infinity,
+              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 24),
                     const Text(
                       'Iniciar Sesión',
                       style: TextStyle(
