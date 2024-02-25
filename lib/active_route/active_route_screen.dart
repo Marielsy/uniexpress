@@ -135,9 +135,7 @@ class _ContentViewSelectRoute extends StatelessWidget {
 }
 
 class _DetailsView extends StatelessWidget {
-  const _DetailsView({
-    super.key,
-  });
+  const _DetailsView();
 
   @override
   Widget build(BuildContext context) {
