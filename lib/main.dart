@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/active_route/active_route_screen.dart';
+import 'package:uniexpress/bus/select_bus_screen.dart';
+import 'package:uniexpress/login/login_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,9 +15,8 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+        backgroundColor: Colors.white,
+        body: ActiveRouteScreen(),
       ),
     );
   }
