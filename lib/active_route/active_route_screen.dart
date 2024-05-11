@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/bus/select_bus_screen.dart';
 import 'package:uniexpress/components/custom_button.dart';
 import 'package:uniexpress/components/header_view.dart';
 import 'package:uniexpress/utils/constants.dart';
@@ -12,18 +13,23 @@ class ActiveRouteScreen extends StatelessWidget {
     final topSafeArea = MediaQuery.of(context).padding;
     double headerHeight = 120 + topSafeArea.top;
     const double borderRadius = 32;
-    return Stack(
-      children: [
-        HeaderView(
-          height: headerHeight,
-          child: _headerContent(headerHeight),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            HeaderView(
+              height: headerHeight,
+              child: _headerContent(headerHeight),
+            ),
+            _ContentViewSelectRoute(
+              borderRadius: borderRadius,
+              headerHeight: headerHeight,
+              titleRoute: 'Ruta Centro',
+            )
+          ],
         ),
-        _ContentViewSelectRoute(
-          borderRadius: borderRadius,
-          headerHeight: headerHeight,
-          titleRoute: 'Ruta Centro',
-        )
-      ],
+      ),
     );
   }
 
@@ -120,7 +126,14 @@ class _ContentViewSelectRoute extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: CustomButton(
                 title: 'Finalizar Ruta',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SelectBusScreen(),
+                    ),
+                  );
+                },
               ),
             )
           ],

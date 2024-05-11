@@ -19,47 +19,49 @@ class _SelectBusScreenState extends State<SelectBusScreen> {
     final topSafeArea = MediaQuery.of(context).padding;
     double headerHeight = 109 + topSafeArea.top;
     const double borderRadius = 32;
-    return Stack(
-      children: [
-        HeaderView(
-          height: headerHeight,
-          child: Column(
-            children: [
-              _headerContent(headerHeight),
-            ],
-          ),
-        ),
-        _ContentViewSelectRoute(
-          borderRadius: borderRadius,
-          headerHeight: headerHeight,
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: headerHeight),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 24,
-              mainAxisSpacing: 24,
+    return Scaffold(
+      body: Stack(
+        children: [
+          HeaderView(
+            height: headerHeight,
+            child: Column(
+              children: [
+                _headerContent(headerHeight),
+              ],
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isSelected = index;
-                  });
-                  showRouteModal();
-                },
-                child: _TransportListCell(
-                  isSelected: (isSelected == index),
-                  index: index,
-                ),
-              );
-            },
           ),
-        ),
-      ],
+          _ContentViewSelectRoute(
+            borderRadius: borderRadius,
+            headerHeight: headerHeight,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: headerHeight),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 24,
+                mainAxisSpacing: 24,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              itemCount: 20,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSelected = index;
+                    });
+                    showRouteModal();
+                  },
+                  child: _TransportListCell(
+                    isSelected: (isSelected == index),
+                    index: index,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 

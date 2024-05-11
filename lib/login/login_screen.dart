@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/bus/select_bus_screen.dart';
 import 'package:uniexpress/components/custom_button.dart';
 import 'package:uniexpress/components/header_view.dart';
 import 'package:uniexpress/components/textfield_view.dart';
@@ -116,12 +117,17 @@ class _ContentView extends StatelessWidget {
                       obscureText: true,
                     ),
                     const SizedBox(height: 40),
-                    CustomButton(
-                      title: 'Iniciar Sesión',
+                   CustomButton(
+                        title: 'Iniciar Sesión',
                       onPressed: () {
-                        debugPrint('login pressed');
-                      },
-                    ),
+                      Navigator.push(
+                     context,
+                     MaterialPageRoute(
+                     builder: (context) => const SelectBusScreen(),
+             ),
+          );
+        },
+      ),
                     const SizedBox(height: 8),
                     CustomButton(
                       title: 'Restablecer contraseña',

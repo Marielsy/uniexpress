@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/active_route/active_route_screen.dart';
 import 'package:uniexpress/components/custom_button.dart';
 import 'package:uniexpress/utils/constants.dart';
 
@@ -64,8 +65,15 @@ class SelectRouteBottomSheet extends StatelessWidget {
             child: SizedBox(
               width: screenWidth * 0.7,
               child: CustomButton(
-                title: 'Iniciar Ruta',
-                onPressed: () {},
+                title: 'Iniciar Ruta', //Bloquear el back. 
+                onPressed: () {
+                      Navigator.pushReplacement(
+                     context,
+                     MaterialPageRoute(
+                     builder: (context) => const ActiveRouteScreen(),
+       ),
+    );
+  },
               ),
             ),
           ),
