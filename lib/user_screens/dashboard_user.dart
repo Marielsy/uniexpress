@@ -6,6 +6,7 @@ class Constants {
   static const primaryColor = Color.fromRGBO(65, 75, 178, 1);
 }
 
+// ignore: constant_identifier_names
 const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoiY2FydmFqYWxtYXJpZWxzeSIsImEiOiJjbHZyOWdkZGEwa2JlMmttZzNuZ2V3Nm52In0.XzknMqNCOBNtUgnHKvCHhg';
 const myPosition = LatLng(9.9115200, -67.3538100);
@@ -14,6 +15,7 @@ class DashboardUser extends StatefulWidget {
   const DashboardUser({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _DashboardUserState createState() => _DashboardUserState();
 }
 
@@ -21,6 +23,47 @@ class _DashboardUserState extends State<DashboardUser> {
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
 
+   final markers = [ 
+  const Marker(
+    width: 200.0,
+    height: 200.0,
+    point: LatLng(9.9105200, -67.3538100),
+    child:  Icon(Icons.location_on, color: Colors.blue, size: 50.0),
+  ),
+  const Marker(
+    width: 200.0,
+    height: 200.0,
+    point: LatLng(9.9135200, -67.3548100),
+    child: Icon(Icons.location_on, color: Colors.orange, size: 50.0), 
+  ),
+  const Marker(
+    width: 200.0,
+    height: 500.0,
+    point: LatLng(9.9155200, -67.3548100),
+    child:  Icon(Icons.location_on, color: Colors.red, size: 50.0), 
+  ),
+  const Marker(
+    width: 200.0,
+    height: 200.0,
+    point: LatLng(9.9175200, -67.3548100),
+    child: Icon(Icons.location_on, color: Colors.pink, size: 50.0), 
+  ),
+  const Marker(
+    width: 200.0,
+    height: 200.0,
+    point: LatLng(9.9185200, -67.3548100),
+    child: Icon(Icons.person_off_outlined, color: Colors.black, size: 50.0), 
+  ),
+  const Marker(
+    width: 200.0,
+    height: 200.0,
+    point: LatLng(9.9165200, -67.3548100),
+    child: Icon(Icons.bus_alert_sharp, color: Colors.black, size: 50.0), 
+  ),
+];
+
+
+  
   void _showRouteModal() {
     showModalBottomSheet(
       context: context,
@@ -88,7 +131,10 @@ class _DashboardUserState extends State<DashboardUser> {
                   'accessToken': MAPBOX_ACCESS_TOKEN,
                   'id': 'mapbox/streets-v11',
                 },
-              )
+              ),
+              MarkerLayer(
+                markers: markers,
+              ),
             ],
           ),
           Positioned(
