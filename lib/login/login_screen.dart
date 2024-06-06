@@ -12,17 +12,19 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     const double headerHeight = 265;
     const double borderRadius = 32;
-    return Stack(
-      children: [
-        HeaderView(
-          height: headerHeight,
-          child: _headerContent(),
-        ),
-        const _ContentView(
-          headerHeight: headerHeight,
-          borderRadius: borderRadius,
-        ),
-      ],
+    return  Scaffold(
+      body: Stack(
+        children: [
+          HeaderView(
+            height: headerHeight,
+            child: _headerContent(), // Sera porque el flujo es mas denso?
+          ),
+          const _ContentView(
+            headerHeight: headerHeight,
+            borderRadius: borderRadius,
+          ),
+        ],
+      ),
     );
   }
 
@@ -126,7 +128,7 @@ class _ContentView extends StatelessWidget {
                      builder: (context) => const SelectBusScreen(),
              ),
           );
-        },
+        }, backgroundColor: [],
       ),
                     const SizedBox(height: 8),
                     CustomButton(
@@ -134,7 +136,7 @@ class _ContentView extends StatelessWidget {
                       isTransparent: true,
                       onPressed: () {
                         debugPrint('contraseña presionado');
-                      },
+                      }, backgroundColor: [],
                     ),
                   ],
                 ),
