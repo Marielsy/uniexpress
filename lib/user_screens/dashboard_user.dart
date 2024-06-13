@@ -69,7 +69,7 @@ class _DashboardUserState extends State<DashboardUser> {
           currentLocation = coordinate;
         });
         // ignore: avoid_print
-        print("hjhjhj");
+        print("hjhjhj"); 
       });
     }
   }
