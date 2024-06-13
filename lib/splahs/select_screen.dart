@@ -45,10 +45,9 @@ class ScreenSelect extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const DashboardUser(),
+                            builder: (context) =>  DashboardUser(),
                           ));
                     },
-                    backgroundColor: const [],
                   ),
                   const SizedBox(height: 16),
                   CustomButton(
@@ -60,7 +59,6 @@ class ScreenSelect extends StatelessWidget {
                             builder: (context) => const LoginScreen(),
                           ));
                     },
-                    backgroundColor: const [],
                   ),
                 ],
               ),

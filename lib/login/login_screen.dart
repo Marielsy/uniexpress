@@ -128,7 +128,7 @@ class _ContentView extends StatelessWidget {
                      builder: (context) => const SelectBusScreen(),
              ),
           );
-        }, backgroundColor: [],
+        },
       ),
                     const SizedBox(height: 8),
                     CustomButton(
@@ -136,7 +136,7 @@ class _ContentView extends StatelessWidget {
                       isTransparent: true,
                       onPressed: () {
                         debugPrint('contraseña presionado');
-                      }, backgroundColor: [],
+                      }, 
                     ),
                   ],
                 ),

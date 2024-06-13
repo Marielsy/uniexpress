@@ -13,6 +13,7 @@ const myPosition = LatLng(9.9115200, -67.3538100);
 
 class DashboardUser extends StatefulWidget {
   const DashboardUser({super.key});
+  
 
   @override
   // ignore: library_private_types_in_public_api
@@ -20,10 +21,60 @@ class DashboardUser extends StatefulWidget {
 }
 
 class _DashboardUserState extends State<DashboardUser> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+       updateLocation();
+    });
+   
+  }
+  List<double> currentLocation = [9.917715, -67.368376];
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
 
-  final markers = [
+  List<List<double>> getCoordinates() {
+    return [
+      [9.917715, -67.368376],
+      [9.917373, -67.368792],
+      [9.917001, -67.369236],
+      [9.916527, -67.369788],
+      [9.915836, -67.370636],
+      [9.915426, -67.372254],
+      [9.914967, -67.373376],
+      [9.913634, -67.375719],
+      [9.911506, -67.377935],
+      [9.909865, -67.379617],
+      [9.906994, -67.381097],
+      [9.903473, -67.386904],
+      [9.901327, -67.391383],
+      [9.901980, -67.394104],
+      [9.901865, -67.394800],
+      [9.901737, -67.395382],
+      [9.900552, -67.395472],
+      [9.900313, -67.395900],
+      [9.900713, -67.396415],
+      [9.900811, -67.397035],
+      [9.900498, -67.397374],
+      [9.899979, -67.397324],
+      [9.898135, -67.391306],
+      [9.893394, -67.385819]
+    ];
+  }
+
+  void updateLocation()async {
+    for (var coordinate in getCoordinates()) {
+      await Future.delayed(const Duration(seconds: 1), () {
+        setState(() {
+          currentLocation = coordinate;
+        });
+        // ignore: avoid_print
+        print("hjhjhj");
+      });
+    }
+  }
+
+  final marke = [
     const Marker(
       width: 200.0,
       height: 200.0,
@@ -115,8 +166,8 @@ class _DashboardUserState extends State<DashboardUser> {
       body: Stack(
         children: [
           FlutterMap(
-            options: const MapOptions(
-              initialCenter: myPosition,
+            options:  MapOptions(
+              initialCenter:LatLng(currentLocation[0],currentLocation[1]),
               minZoom: 5,
               maxZoom: 25,
               initialZoom: 18,
@@ -130,9 +181,27 @@ class _DashboardUserState extends State<DashboardUser> {
                   'id': 'mapbox/streets-v11',
                 },
               ),
-              MarkerLayer(
-                markers: markers,
-              ),
+              MarkerLayer(markers: [
+                Marker(
+                  width: 200.0,
+                  height: 200.0,
+                  point: LatLng(currentLocation[0], currentLocation[1]),
+                  child:
+                      const Icon(Icons.location_on, color: Colors.pink, size: 50.0),
+                ),
+              ]
+
+                  // getCoordinates().map(
+
+                  //   (coord) =>  Marker(
+                  //     width: 200.0,
+                  //     height: 200.0,
+                  //     point: LatLng(coord.first, coord.last),
+                  //     child: const Icon(Icons.bus_alert_rounded,
+                  //         color: Colors.black, size: 50.0),
+                  //   ),
+                  // ).toList(),
+                  ),
             ],
           ),
           Positioned(
@@ -222,6 +291,7 @@ class SelectRouteBottomSheet extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
           title: Text(routeList[index]),
           onTap: () {
+            // ignore: avoid_print
             print('Selected route: ${routeList[index]}');
             Navigator.of(context).pop();
           },

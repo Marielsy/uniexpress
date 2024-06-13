@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.title,
     this.isTransparent = false,
-    this.onPressed, required List<MaterialAccentColor> backgroundColor,
+    this.onPressed
   });
 
   @override

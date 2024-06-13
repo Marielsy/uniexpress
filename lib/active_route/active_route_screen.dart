@@ -133,7 +133,7 @@ class _ContentViewSelectRoute extends StatelessWidget {
                       builder: (context) => const SelectBusScreen(),
                     ),
                   );
-                }, backgroundColor: const [],
+                },
               ),
             )
           ],

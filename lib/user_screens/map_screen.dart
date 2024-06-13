@@ -8,7 +8,7 @@ class Constants {
 // ignore: constant_identifier_names
 const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoiY2FydmFqYWxtYXJpZWxzeSIsImEiOiJjbHZyOWdkZGEwa2JlMmttZzNuZ2V3Nm52In0.XzknMqNCOBNtUgnHKvCHhg';
-const myPosition = LatLng(9.9115200, -67.3538100);
+const myPosition = LatLng(9.917715, -67.368376);
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});

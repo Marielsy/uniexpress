@@ -73,7 +73,7 @@ class SelectRouteBottomSheet extends StatelessWidget {
                      builder: (context) => const ActiveRouteScreen(),
        ),
     );
-  }, backgroundColor: [],
+  },
               ),
             ),
           ),
