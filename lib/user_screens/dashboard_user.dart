@@ -12,8 +12,12 @@ const MAPBOX_ACCESS_TOKEN =
 const myPosition = LatLng(9.9115200, -67.3538100);
 
 class DashboardUser extends StatefulWidget {
-  const DashboardUser({super.key});
-  
+  const DashboardUser({
+    Key? key,
+    this.placeholder = 'Ejkjk',
+  }) : super(key: key);
+
+  final String placeholder;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -25,10 +29,10 @@ class _DashboardUserState extends State<DashboardUser> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-       updateLocation();
+      updateLocation();
     });
-   
   }
+
   List<double> currentLocation = [9.917715, -67.368376];
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
@@ -62,14 +66,14 @@ class _DashboardUserState extends State<DashboardUser> {
     ];
   }
 
-  void updateLocation()async {
+  void updateLocation() async {
     for (var coordinate in getCoordinates()) {
-      await Future.delayed(const Duration(seconds: 1), () {
+      await Future.delayed(const Duration(seconds: 5), () {
         setState(() {
           currentLocation = coordinate;
         });
         // ignore: avoid_print
-        print("hjhjhj"); 
+        // print("hjhjhj");
       });
     }
   }
@@ -166,8 +170,8 @@ class _DashboardUserState extends State<DashboardUser> {
       body: Stack(
         children: [
           FlutterMap(
-            options:  MapOptions(
-              initialCenter:LatLng(currentLocation[0],currentLocation[1]),
+            options: MapOptions(
+              initialCenter: LatLng(currentLocation[0], currentLocation[1]),
               minZoom: 5,
               maxZoom: 25,
               initialZoom: 18,
@@ -186,8 +190,8 @@ class _DashboardUserState extends State<DashboardUser> {
                   width: 200.0,
                   height: 200.0,
                   point: LatLng(currentLocation[0], currentLocation[1]),
-                  child:
-                      const Icon(Icons.location_on, color: Colors.pink, size: 50.0),
+                  child: const Icon(Icons.location_on,
+                      color: Colors.pink, size: 50.0),
                 ),
               ]
 
@@ -206,11 +210,29 @@ class _DashboardUserState extends State<DashboardUser> {
           ),
           Positioned(
             top: 100,
-            left: 150,
-            right: 150,
+            left: 50,
+            right: 50,
+            height: 150,
             child: Column(
               children: [
-                DropdownButton<String>(
+                DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    hintText: 'Elegir Parada...',
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 10.0),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.9),
+                  ),
+                  dropdownColor: Colors.white,
+                  //  hint: Text('Elegir Parada...'),
                   value: selectedValueTop,
                   onChanged: (newValue) {
                     if (newValue != null) {
@@ -220,10 +242,17 @@ class _DashboardUserState extends State<DashboardUser> {
                       _showRouteModal();
                     }
                   },
+                  isExpanded: true,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                  ),
                   items: const [
                     DropdownMenuItem<String>(
                       value: 'Agronomia',
-                      child: Text('Agronomia'),
+                      child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Text('Agronomia')),
                     ),
                     DropdownMenuItem<String>(
                       value: 'Medicina',
@@ -239,7 +268,25 @@ class _DashboardUserState extends State<DashboardUser> {
                     ),
                   ],
                 ),
-                DropdownButton<String>(
+                 const SizedBox(height: 16.0), 
+                DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                    hintText: 'Elegir Parada...',
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 10.0),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: const BorderSide(color: Colors.white),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.9),
+                  ),
+                  dropdownColor: Colors.white,
+
                   value: selectedValueBottom,
                   onChanged: (newValue) {
                     if (newValue != null) {
@@ -248,6 +295,11 @@ class _DashboardUserState extends State<DashboardUser> {
                       });
                     }
                   },
+                  isExpanded: true,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                  ),
                   items: const [
                     DropdownMenuItem<String>(
                       value: 'Av.Bolivar',
