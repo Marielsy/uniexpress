@@ -130,14 +130,7 @@ class _ContentView extends StatelessWidget {
           );
         },
       ),
-                    const SizedBox(height: 8),
-                    CustomButton(
-                      title: 'Restablecer contraseña',
-                      isTransparent: true,
-                      onPressed: () {
-                        debugPrint('contraseña presionado');
-                      }, 
-                    ),
+                   
                   ],
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/login/login_screen.dart';
 import 'package:uniexpress/user_screens/dashboard_user.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: DashboardUser(),
+        body: LoginScreen(),
       ),
     );
   }
