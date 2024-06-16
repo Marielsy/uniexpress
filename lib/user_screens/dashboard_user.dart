@@ -218,107 +218,83 @@ class _DashboardUserState extends State<DashboardUser> {
           ),
           Positioned(
             top: 100,
-            left: 50,
-            right: 50,
+            left: 20,
+            right: 20,
             height: 150,
-            child: Column(
+            child: Stack(
               children: [
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    hintText: 'Elegir Parada...',
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 10.0),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Colors.white),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, left: 8),
+                  child: Container(
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(2),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.9),
                   ),
-                  dropdownColor: Colors.white,
-                  //  hint: Text('Elegir Parada...'),
-                  value: selectedValueTop,
-                  onChanged: (newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        selectedValueTop = newValue;
-                      });
-                      _showRouteModal();
-                    }
-                  },
-                  isExpanded: true,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                  ),
-                  items: const [
-                    DropdownMenuItem<String>(
-                      value: 'Agronomia',
-                      child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text('Agronomia')),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Medicina',
-                      child: Text('Medicina'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Ingenieria',
-                      child: Text('Ingenieria'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Cs Sociales',
-                      child: Text('Cs Sociales'),
-                    ),
-                  ],
                 ),
-                const SizedBox(height: 16.0),
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    hintText: 'Elegir Parada...',
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 10.0),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Colors.white),
+                Padding(
+                  padding: const EdgeInsets.only(top: 52, left: 8),
+                  child: Container(
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(2),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.9),
                   ),
-                  dropdownColor: Colors.white,
-                  value: selectedValueBottom,
-                  onChanged: (newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        selectedValueBottom = newValue;
-                      });
-                    }
-                  },
-                  isExpanded: true,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 64, left: 8),
+                  child: Container(
+                    width: 4,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
-                  items: const [
-                    DropdownMenuItem<String>(
-                      value: 'Av.Bolivar',
-                      child: Text('Av.Bolivar'),
+                ),
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        const SizedBox(width: 3),
+                        SizedBox(
+                          width: 15,
+                          height: 15,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.blue),
+                            ),
+                            child: const Icon(
+                              Icons.circle_rounded,
+                              size: 10,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        Expanded(child: _dropdownCurrentLocation()),
+                      ],
                     ),
-                    DropdownMenuItem<String>(
-                      value: 'Av.Miranda',
-                      child: Text('Av.Miranda'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Villa Olimpica',
-                      child: Text('Villa Olimpica'),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      children: [
+                        const SizedBox(
+                          width: 15,
+                          height: 15,
+                          child: Icon(
+                            Icons.location_on,
+                            size: 20,
+                            color: Colors.red,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(child: _dropdownDestination()),
+                      ],
                     ),
                   ],
                 ),
@@ -327,6 +303,115 @@ class _DashboardUserState extends State<DashboardUser> {
           ),
         ],
       ),
+    );
+  }
+
+  DropdownButtonFormField<String> _dropdownCurrentLocation() {
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        hintText: 'Elegir Parada...',
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
+      ),
+      dropdownColor: Colors.white,
+      value: selectedValueBottom,
+      onChanged: (newValue) {
+        if (newValue != null) {
+          setState(() {
+            selectedValueBottom = newValue;
+          });
+        }
+      },
+      isExpanded: true,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 20.0,
+      ),
+      items: const [
+        DropdownMenuItem<String>(
+          value: 'Av.Bolivar',
+          child: Text('Av.Bolivar'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'Av.Miranda',
+          child: Text('Av.Miranda'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'Villa Olimpica',
+          child: Text('Villa Olimpica'),
+        ),
+      ],
+    );
+  }
+
+  DropdownButtonFormField<String> _dropdownDestination() {
+    List<Map<String, List<double>>> destinationValues = [
+      {
+        'Agronomia': [-67.396340, 9.900672],
+      },
+      {
+        'Medicina': [-67.386405, 9.893469]
+      },
+      {
+        'Ingenieria': [-67.391362, 9.897284]
+      },
+      {
+        'Cs Sociales': [-67.385058, 9.894283]
+      },
+    ];
+
+    return DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        hintText: 'Elegir Parada...',
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        filled: true,
+        fillColor: Colors.white.withOpacity(0.9),
+      ),
+      dropdownColor: Colors.white,
+      //  hint: Text('Elegir Parada...'),
+      value: selectedValueTop,
+      onChanged: (newValue) {
+        if (newValue != null) {
+          setState(() {
+            selectedValueTop = newValue;
+          });
+          _showRouteModal();
+        }
+      },
+      isExpanded: true,
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 20.0,
+      ),
+
+      items: destinationValues.map<DropdownMenuItem<String>>((map) {
+        String key = map.keys.first;
+        List<double> value = map.values.first;
+
+        return DropdownMenuItem<String>(
+          value: key,
+          child: Text(key),
+        );
+      }).toList(),
     );
   }
 }
