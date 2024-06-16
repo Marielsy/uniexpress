@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/login/login_screen.dart';
-import 'package:uniexpress/user_screens/dashboard_user.dart';
+import 'package:uniexpress/splahs/select_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,7 +15,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: LoginScreen(),
+        body: ScreenSelect(),
       ),
     );
   }
