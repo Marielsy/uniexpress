@@ -45,7 +45,7 @@ class ScreenSelect extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  DashboardUser(),
+                            builder: (context) =>  const DashboardUser(),
                           ));
                     },
                   ),
@@ -56,7 +56,7 @@ class ScreenSelect extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  LoginScreen(),
+                            builder: (context) =>  const LoginScreen(),
                           ));
                     },
                   ),

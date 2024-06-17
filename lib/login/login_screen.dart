@@ -55,7 +55,6 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-
 class _ContentView extends StatelessWidget {
   final double headerHeight;
   final double borderRadius;
