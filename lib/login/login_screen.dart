@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           HeaderView(
             height: headerHeight,
-            child: _headerContent(), // Sera porque el flujo es mas denso?
+            child: _headerContent(), 
           ),
           const _ContentView(
             headerHeight: headerHeight,
@@ -54,6 +54,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
 
 class _ContentView extends StatelessWidget {
   final double headerHeight;
