@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/select_bus_screen.dart';
 import 'package:uniexpress/components/custom_button.dart';
 import 'package:uniexpress/components/header_view.dart';
+import 'package:uniexpress/login/login_screen.dart';
 import 'package:uniexpress/utils/constants.dart';
 
 class ActiveRouteScreen extends StatelessWidget {
@@ -135,7 +136,23 @@ class _ContentViewSelectRoute extends StatelessWidget {
                   );
                 },
               ),
-            )
+            ),
+            const SizedBox(height: 25),
+
+             Padding(
+            padding:  const EdgeInsets.symmetric(horizontal: 24),
+               child: CustomButton(
+                  title: 'Salir',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                ),
+             ),
           ],
         ),
       ),

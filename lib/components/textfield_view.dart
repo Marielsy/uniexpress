@@ -9,7 +9,7 @@ class TextFieldView extends StatelessWidget {
     super.key,
     required this.title,
     required this.placeholder,
-    this.obscureText = false,
+    this.obscureText = false, required controller, required String? Function(dynamic value) validator,
   });
 
   @override
