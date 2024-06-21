@@ -138,21 +138,20 @@ class _ContentViewSelectRoute extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-
-             Padding(
-            padding:  const EdgeInsets.symmetric(horizontal: 24),
-               child: CustomButton(
-                  title: 'Salir',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
-                  },
-                ),
-             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: CustomButton(
+                title: 'Salir',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),

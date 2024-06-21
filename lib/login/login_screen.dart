@@ -1,94 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/bus/select_bus_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:uniexpress/components/custom_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uniexpress/bus/select_bus_screen.dart';
 import 'package:uniexpress/components/header_view.dart';
 import 'package:uniexpress/components/textfield_view.dart';
-import 'package:uniexpress/utils/constants.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
+class LoginPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
-  Future<bool> _isLoginValid() async {
-    if (_formKey.currentState!.validate()) {
-      final email = _emailController.text.trim();
-      final password = _passwordController.text.trim();
-
-      try {
-        // Verificar si el usuario existe en la colección "driver"
-        final driverQuery = await FirebaseFirestore.instance
-            .collection('driver')
-            .where('/driver/Htj2HLNYJsHG9VqelBJx', isEqualTo: email)
-            .limit(1)
-            .get();
-
-        if (driverQuery.docs.isNotEmpty) {
-          final driverDoc = driverQuery.docs.first;
-          print('Usuario encontrado: ${driverDoc.data()}'); // Depuración
-
-          // Verificar si la contraseña coincide
-          if (driverDoc.data()['contraseña'] == password) {
-            return true;
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Contraseña inválida, verifique'),
-              ),
-            );
-            return false;
-          }
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Correo inválido, verifique'),
-            ),
-          );
-          return false;
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: $e'),
-          ),
-        );
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    const double headerHeight = 265;
-    const double borderRadius = 32;
-
     return Scaffold(
-      body: Stack(
-        children: [
-          HeaderView(
-            height: headerHeight,
-            child: _headerContent(),
-          ),
-          _ContentView(
-            headerHeight: headerHeight,
-            borderRadius: borderRadius,
-            emailController: _emailController,
-            passwordController: _passwordController,
-            formKey: _formKey,
-            isLoginValid: _isLoginValid,
-          ),
-        ],
+      body: Form(
+        key: _formKey,
+        child: Stack(
+          children: [
+            HeaderView(
+              height: 265,
+              child: _headerContent(),
+            ),
+            _ContentView(
+              emailController: _emailController,
+              passwordController: _passwordController,
+              formKey: _formKey,
+              onPressed: _submitForm,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -118,111 +64,144 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
+
+  void _submitForm() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        await FirebaseFirestore.instance
+            .collection('usuarios')
+            .doc(userCredential.user!.uid)
+            .set({
+          'email': _emailController.text,
+        });
+
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login successful!'),
+          ),
+        );
+        await Future.delayed(const Duration(seconds: 1));
+
+        Navigator.push(
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SelectBusScreen(),
+          ),
+        );
+
+        // Aquí puedes navegar a la siguiente pantalla después del login exitoso
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
+      } catch (e) {
+        // Manejar errores de inicio de sesión o almacenamiento
+        print('Error de inicio de sesión o almacenamiento: $e');
+
+        // Mostrar mensaje de error al usuario
+        showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content: const Text(
+                  'Error al iniciar sesion, valida tu correo y contraseña'),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('OK'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+  }
 }
 
 class _ContentView extends StatelessWidget {
-  final double headerHeight;
-  final double borderRadius;
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
-  final Future<bool> Function() isLoginValid;
+  final VoidCallback onPressed;
 
   const _ContentView({
-    required this.headerHeight,
-    required this.borderRadius,
     required this.emailController,
     required this.passwordController,
     required this.formKey,
-    required this.isLoginValid,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    var boxDecoration = BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(borderRadius),
-        topRight: Radius.circular(borderRadius),
-      ),
-      boxShadow: const [
-        BoxShadow(
-          offset: Offset(30, 16),
-          color: Color.fromRGBO(14, 16, 40, 0.25),
-          spreadRadius: 29,
-          blurRadius: 20,
-        )
-      ],
-    );
-
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(top: headerHeight - (borderRadius)),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: borderRadius,
-              decoration: boxDecoration,
+            const SizedBox(height: 300), // Ajustar el espacio según necesites
+            const Text(
+              'Iniciar Sesion',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w600,
+                color: Color.fromRGBO(65, 75, 178, 1),
+              ),
             ),
-            Container(
-              width: double.infinity,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Iniciar Sesión',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                          color: Constants.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                      TextFieldView(
-                        title: 'Correo Electrónico',
-                        placeholder: 'correo@gmail.com',
-                        controller: emailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, ingresa tu correo electrónico';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      TextFieldView(
-                        title: 'Contraseña',
-                        placeholder: 'Contraseña',
-                        controller: passwordController,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Por favor, ingresa tu contraseña';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 40),
-                      CustomButton(
-                        title: 'Iniciar Sesión',
-                        onPressed: () async {
-                          if (await isLoginValid()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SelectBusScreen(),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  ),
+            const SizedBox(height: 30),
+            TextFieldView(
+              title: 'Contraseña',
+              placeholder: 'Contraseña',
+              obscureText: true,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+              controller: null,
+            ),
+            const SizedBox(height: 24),
+            TextFieldView(
+              title: 'Contraseña',
+              placeholder: 'Contraseña',
+              obscureText: true,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your password';
+                }
+                return null;
+              },
+              controller: null,
+            ),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor:
+                    Color.fromRGBO(65, 75, 178, 1), // Color del texto del botón
+                padding:
+                    EdgeInsets.symmetric(vertical: 1 - 10), // Padding del botón
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(10), // Radio de borde del botón
+                ),
+              ),
+              onPressed: onPressed,
+              child: const Text(
+                'Entrar',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

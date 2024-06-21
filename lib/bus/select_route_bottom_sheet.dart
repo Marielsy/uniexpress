@@ -65,15 +65,15 @@ class SelectRouteBottomSheet extends StatelessWidget {
             child: SizedBox(
               width: screenWidth * 0.7,
               child: CustomButton(
-                title: 'Iniciar Ruta', //Bloquear el back. 
+                title: 'Iniciar Ruta', //Bloquear el back.
                 onPressed: () {
-                      Navigator.pushReplacement(
-                     context,
-                     MaterialPageRoute(
-                     builder: (context) => const ActiveRouteScreen(),
-       ),
-    );
-  },
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ActiveRouteScreen(),
+                    ),
+                  );
+                },
               ),
             ),
           ),

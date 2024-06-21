@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniexpress/register.dart';
 import 'package:uniexpress/splahs/select_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
