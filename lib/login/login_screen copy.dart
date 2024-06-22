@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uniexpress/bus/select_bus_screen.dart';
-import 'package:uniexpress/components/custom_button.dart';
-import 'package:uniexpress/components/header_view.dart';
-import 'package:uniexpress/components/textfield_view.dart';
+import 'package:uniexpress/bus/driver/select_bus_screen.dart';
+import 'package:uniexpress/components/driver/header_view.dart';
+import 'package:uniexpress/components/driver/textfield_view.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -75,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
             .get();
 
         if (querySnapshot.docs.isNotEmpty) {
-          // Usuario encontrado en la colección 'usuarios'
+          // Usuario encontrado en Firestore, intentar iniciar sesión
           UserCredential userCredential =
               await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: _emailController.text,
@@ -85,12 +84,12 @@ class _LoginPageState extends State<LoginPage> {
           // Mostrar mensaje de éxito
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Login successful!'),
+              content: Text('¡Inicio de sesión exitoso!'),
             ),
           );
           await Future.delayed(const Duration(seconds: 1));
 
-          // Navegar a la siguiente pantalla
+          // Navegar a la pantalla SelectBusScreen después del inicio de sesión exitoso
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -98,14 +97,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
           );
         } else {
-          // Mostrar mensaje de usuario no registrado en Firestore
+          // Usuario no encontrado en Firestore
           _showErrorDialog('Usuario no registrado');
         }
       } catch (e) {
-        // Manejar errores de inicio de sesión
         print('Error de inicio de sesión: $e');
         _showErrorDialog(
-            'Error al iniciar sesión, valida tu correo y contraseña');
+            'Error al iniciar sesión, verifica tu correo y contraseña');
       }
     }
   }
@@ -187,9 +185,15 @@ class _ContentView extends StatelessWidget {
               controller: passwordController,
             ),
             const SizedBox(height: 30),
-            CustomButton(
-              title: 'Iniciar Sesión',
+            ElevatedButton(
               onPressed: onPressed,
+              child: const Text(
+                'Entrar',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),

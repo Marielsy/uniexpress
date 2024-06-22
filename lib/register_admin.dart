@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key}); 
+class RegisterPage2 extends StatefulWidget {
+  const RegisterPage2({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterPage2State createState() => _RegisterPage2State();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPage2State extends State<RegisterPage2> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController2 = TextEditingController();
+  final TextEditingController _passwordController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           children: [
             TextFormField(
-              controller: _emailController,
+              controller: _emailController2,
               decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
               },
             ),
             TextFormField(
-              controller: _passwordController,
+              controller: _passwordController2,
               decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
               validator: (value) {
@@ -61,17 +61,17 @@ class _RegisterPageState extends State<RegisterPage> {
       try {
         UserCredential userCredential =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
+          email: _emailController2.text,
+          password: _passwordController2.text,
         );
 
         // Guardar datos adicionales en Firestore
         await FirebaseFirestore.instance
-            .collection('usuarios')
+            .collection('usuarioAdmin')
             .doc(userCredential.user!.uid)
             .set({
-          'email': _emailController.text,
-          'password': _passwordController.text
+          'email': _emailController2.text,
+          'password': _passwordController2.text
 
           // Puedes agregar más campos de usuario aquí según necesites
         });

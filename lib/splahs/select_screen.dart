@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/components/custom_button.dart';
-import 'package:uniexpress/login/login_screen.dart';
+import 'package:uniexpress/components/driver/custom_button.dart';
+import 'package:uniexpress/login/admin/login_2.dart';
+import 'package:uniexpress/login/driver/login_screen.dart';
 import 'package:uniexpress/user_screens/dashboard_user.dart';
 
 class Constants {
@@ -56,7 +57,18 @@ class ScreenSelect extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>  LoginPage (),
+                            builder: (context) =>   const LoginPage (),
+                          ));
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  CustomButton(
+                    title: 'Soy Supervisor',
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>   const LoginAdmin (),
                           ));
                     },
                   ),

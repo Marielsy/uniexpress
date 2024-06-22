@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uniexpress/bus/driver/select_bus_screen.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key}); 
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -18,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+     
       body: Form(
         key: _formKey,
         child: Column(
@@ -48,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {
                 _submitForm();
               },
-              child: const Text('Register'),
+              child: const Text('Login'),
             ),
           ],
         ),
@@ -60,43 +59,31 @@ class _RegisterPageState extends State<RegisterPage> {
     if (_formKey.currentState!.validate()) {
       try {
         UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text,
           password: _passwordController.text,
         );
 
-        // Guardar datos adicionales en Firestore
-        await FirebaseFirestore.instance
-            .collection('usuarios')
-            .doc(userCredential.user!.uid)
-            .set({
-          'email': _emailController.text,
-          'password': _passwordController.text
-
-          // Puedes agregar más campos de usuario aquí según necesites
-        });
-
-        // Mostrar mensaje de éxito
+        // Si el inicio de sesión es exitoso, puedes navegar a la siguiente pantalla
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectBusScreen()));
+        
+        // Mostrar mensaje de éxito (opcional)
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Registration successful!'),
+            content: Text('Login successful!'),
           ),
         );
-
-        // Aquí puedes navegar a la siguiente pantalla después del registro exitoso
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
       } catch (e) {
-        // Manejar errores de registro o almacenamiento
-        print('Error de registro o almacenamiento: $e');
+        // Manejar errores de inicio de sesión
+        print('Error de inicio de sesión: $e');
 
-        // Mostrar mensaje de error al usuario
+        // Mostrar mensaje de error al usuario (opcional)
         showDialog(
-          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Error'),
-              content: const Text('Registration failed. Please try again.'),
+              content: const Text('Login failed. Please try again.'),
               actions: <Widget>[
                 TextButton(
                   child: const Text('OK'),

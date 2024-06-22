@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:uniexpress/register.dart';
+import 'package:uniexpress/splahs/select_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,14 +11,13 @@ Future<void> main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return    MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: RegisterPage(),
+        body: ScreenSelect(),
       ),
     );
   }

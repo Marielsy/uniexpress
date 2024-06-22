@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/bus/select_route_bottom_sheet.dart';
-import 'package:uniexpress/components/header_view.dart';
+import 'package:uniexpress/bus/driver/select_route_bottom_sheet.dart';
+import 'package:uniexpress/components/driver/header_view.dart';
 import 'package:uniexpress/utils/constants.dart';
 
 class SelectBusScreen extends StatefulWidget {

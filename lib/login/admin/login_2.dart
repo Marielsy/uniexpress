@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uniexpress/bus/admin/select_bus_admin.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key}); 
+class LoginAdmin extends StatefulWidget {
+  const LoginAdmin({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RegisterPageState createState() => _RegisterPageState();
+  _LoginAdminState createState() => _LoginAdminState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginAdminState extends State<LoginAdmin> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController2 = TextEditingController();
+  final TextEditingController _passwordController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+     
       body: Form(
         key: _formKey,
         child: Column(
           children: [
             TextFormField(
-              controller: _emailController,
+              controller: _emailController2,
               decoration: const InputDecoration(labelText: 'Email'),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -34,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
               },
             ),
             TextFormField(
-              controller: _passwordController,
+              controller: _passwordController2,
               decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
               validator: (value) {
@@ -48,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {
                 _submitForm();
               },
-              child: const Text('Register'),
+              child: const Text('Login2'),
             ),
           ],
         ),
@@ -60,43 +59,31 @@ class _RegisterPageState extends State<RegisterPage> {
     if (_formKey.currentState!.validate()) {
       try {
         UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController2.text,
+          password: _passwordController2.text,
         );
 
-        // Guardar datos adicionales en Firestore
-        await FirebaseFirestore.instance
-            .collection('usuarios')
-            .doc(userCredential.user!.uid)
-            .set({
-          'email': _emailController.text,
-          'password': _passwordController.text
-
-          // Puedes agregar más campos de usuario aquí según necesites
-        });
-
-        // Mostrar mensaje de éxito
+        // Si el inicio de sesión es exitoso, puedes navegar a la siguiente pantalla
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SelectBusScreenAdmin()));
+        
+        // Mostrar mensaje de éxito (opcional)
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Registration successful!'),
+            content: Text('Login successful!'),
           ),
         );
-
-        // Aquí puedes navegar a la siguiente pantalla después del registro exitoso
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
       } catch (e) {
-        // Manejar errores de registro o almacenamiento
-        print('Error de registro o almacenamiento: $e');
+        // Manejar errores de inicio de sesión
+        print('Error de inicio de sesión: $e');
 
-        // Mostrar mensaje de error al usuario
+        // Mostrar mensaje de error al usuario (opcional)
         showDialog(
-          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Error'),
-              content: const Text('Registration failed. Please try again.'),
+              content: const Text('Login failed. Please try again.'),
               actions: <Widget>[
                 TextButton(
                   child: const Text('OK'),

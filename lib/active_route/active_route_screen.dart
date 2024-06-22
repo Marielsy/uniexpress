@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/bus/select_bus_screen.dart';
-import 'package:uniexpress/components/custom_button.dart';
-import 'package:uniexpress/components/header_view.dart';
-import 'package:uniexpress/login/login_screen.dart';
+import 'package:uniexpress/bus/driver/select_bus_screen.dart';
+import 'package:uniexpress/components/driver/custom_button.dart';
+import 'package:uniexpress/components/driver/header_view.dart';
+import 'package:uniexpress/login/driver/login_screen.dart';
 import 'package:uniexpress/utils/constants.dart';
 
 class ActiveRouteScreen extends StatelessWidget {

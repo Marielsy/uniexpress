@@ -39,6 +39,7 @@ class TextFieldView extends StatelessWidget {
             ],
           ),
           child: TextField(
+            keyboardType: TextInputType.emailAddress,
             obscureText: obscureText,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(16),

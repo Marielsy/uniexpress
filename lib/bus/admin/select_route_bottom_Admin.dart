@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/active_route/active_route_screen.dart';
-import 'package:uniexpress/components/custom_button.dart';
+import 'package:uniexpress/bus/admin/select_bus_admin.dart';
+import 'package:uniexpress/components/driver/custom_button.dart';
 import 'package:uniexpress/utils/constants.dart';
 
-class SelectRouteBottomSheet extends StatelessWidget {
+class SelectRouteBottomSheet2 extends StatelessWidget {
   final List<String> routeList;
 
-  const SelectRouteBottomSheet({
+  const SelectRouteBottomSheet2({
     super.key,
     required this.routeList,
   });
@@ -20,7 +20,7 @@ class SelectRouteBottomSheet extends StatelessWidget {
       children: [
         const Center(
           child: Text(
-            'Lista de Rutas',
+            'Lista de transportes',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -65,12 +65,12 @@ class SelectRouteBottomSheet extends StatelessWidget {
             child: SizedBox(
               width: screenWidth * 0.7,
               child: CustomButton(
-                title: 'Iniciar Ruta', //Bloquear el back.
+                title: 'Volver', //Bloquear el back.
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ActiveRouteScreen(),
+                      builder: (context) => const SelectBusScreenAdmin(),
                     ),
                   );
                 },
@@ -80,6 +80,8 @@ class SelectRouteBottomSheet extends StatelessWidget {
         ),
         SizedBox(height: (bottomInset == 0) ? 19 : 0)
       ],
+      
     );
+    
   }
 }
