@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uniexpress/bus/select_bus_screen.dart';
+import 'package:uniexpress/components/custom_button.dart';
 import 'package:uniexpress/components/header_view.dart';
 import 'package:uniexpress/components/textfield_view.dart';
 
@@ -68,62 +68,66 @@ class _LoginPageState extends State<LoginPage> {
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       try {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-        await FirebaseFirestore.instance
+        // Verificar si el usuario existe en Firestore
+        QuerySnapshot querySnapshot = await FirebaseFirestore.instance
             .collection('usuarios')
-            .doc(userCredential.user!.uid)
-            .set({
-          'email': _emailController.text,
-        });
+            .where('email', isEqualTo: _emailController.text)
+            .get();
 
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Login successful!'),
-          ),
-        );
-        await Future.delayed(const Duration(seconds: 1));
+        if (querySnapshot.docs.isNotEmpty) {
+          // Usuario encontrado en la colección 'usuarios'
+          UserCredential userCredential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: _emailController.text,
+            password: _passwordController.text,
+          );
 
-        Navigator.push(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(
-            builder: (context) => const SelectBusScreen(),
-          ),
-        );
+          // Mostrar mensaje de éxito
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Login successful!'),
+            ),
+          );
+          await Future.delayed(const Duration(seconds: 1));
 
-        // Aquí puedes navegar a la siguiente pantalla después del login exitoso
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
+          // Navegar a la siguiente pantalla
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SelectBusScreen(),
+            ),
+          );
+        } else {
+          // Mostrar mensaje de usuario no registrado en Firestore
+          _showErrorDialog('Usuario no registrado');
+        }
       } catch (e) {
-        // Manejar errores de inicio de sesión o almacenamiento
-        print('Error de inicio de sesión o almacenamiento: $e');
-
-        // Mostrar mensaje de error al usuario
-        showDialog(
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error'),
-              content: const Text(
-                  'Error al iniciar sesion, valida tu correo y contraseña'),
-              actions: <Widget>[
-                TextButton(
-                  child: const Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
+        // Manejar errores de inicio de sesión
+        print('Error de inicio de sesión: $e');
+        _showErrorDialog(
+            'Error al iniciar sesión, valida tu correo y contraseña');
       }
     }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -150,7 +154,7 @@ class _ContentView extends StatelessWidget {
           children: [
             const SizedBox(height: 300), // Ajustar el espacio según necesites
             const Text(
-              'Iniciar Sesion',
+              'Iniciar Sesión',
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w600,
@@ -159,16 +163,15 @@ class _ContentView extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             TextFieldView(
-              title: 'Contraseña',
-              placeholder: 'Contraseña',
-              obscureText: true,
+              title: 'Correo Electrónico',
+              placeholder: 'correo@gmail.com',
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Por favor, ingresa tu correo electrónico';
                 }
                 return null;
               },
-              controller: null,
+              controller: emailController,
             ),
             const SizedBox(height: 24),
             TextFieldView(
@@ -177,33 +180,16 @@ class _ContentView extends StatelessWidget {
               obscureText: true,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Por favor, ingresa tu contraseña';
                 }
                 return null;
               },
-              controller: null,
+              controller: passwordController,
             ),
             const SizedBox(height: 30),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor:
-                    Color.fromRGBO(65, 75, 178, 1), // Color del texto del botón
-                padding:
-                    EdgeInsets.symmetric(vertical: 1 - 10), // Padding del botón
-                shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(10), // Radio de borde del botón
-                ),
-              ),
+            CustomButton(
+              title: 'Iniciar Sesión',
               onPressed: onPressed,
-              child: const Text(
-                'Entrar',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             ),
           ],
         ),

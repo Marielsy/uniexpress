@@ -154,7 +154,7 @@ packages:
     source: hosted
     version: "7.0.0"
   firebase_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_auth
       sha256: "3af60a78e92567af3d9a5e25d3955f0f6a3f7a33b900724c1c4c336ff5e44200"
@@ -178,7 +178,7 @@ packages:
     source: hosted
     version: "5.12.2"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       sha256: fae4ab4317c2a7afb13d44ef1e3f9f28a630e10016bc5cfe761e8e6a0ed7816a
@@ -202,7 +202,7 @@ packages:
     source: hosted
     version: "2.17.2"
   firebase_storage:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_storage
       sha256: "594f593551a20c1de68663414965b6ec4909f9a6bde8e6b1dac240ce779de947"
@@ -231,7 +231,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_lints
       sha256: "3f41d009ba7172d5ff9be5f6e6e6abb4300e263aab8866d2a0842ed2a70f8f0c"
@@ -257,7 +257,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutterfire_cli:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutterfire_cli
       sha256: "183c3cb2c72030394b74df6e1f4ca4c3b2c8f088f2566f242efe1da495b3cf95"
