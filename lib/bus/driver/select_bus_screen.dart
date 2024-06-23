@@ -42,7 +42,7 @@ class _SelectBusScreenState extends State<SelectBusScreen> {
                 crossAxisSpacing: 24,
                 mainAxisSpacing: 24,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 14),
               itemCount: 20,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(

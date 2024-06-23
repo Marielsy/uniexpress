@@ -18,8 +18,8 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
   Widget build(BuildContext context) {
     //Calculate Inset top SafeAreat
     final topSafeArea = MediaQuery.of(context).padding;
-    double headerHeight = 109 + topSafeArea.top;
-    const double borderRadius = 32;
+    double headerHeight = 108 + topSafeArea.top;
+    const double borderRadius = 30;
     return Scaffold(
       body: Stack(
         children: [
@@ -95,7 +95,7 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
     return SizedBox(
       height: headerHeight,
       child: Container(
-        margin: EdgeInsets.only(top: 20, bottom: 20),
+        margin: const EdgeInsets.only(top: 20, bottom: 20),
         child: const Column(
           children: [
             Spacer(),
