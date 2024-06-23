@@ -67,32 +67,49 @@ class _LoginAdminState extends State<LoginAdmin> {
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       try {
+        // Obtener el correo electrónico ingresado
+        String email = _emailController2.text.trim();
+
+        // Validar si el correo electrónico es el del supervisor
+        if (email != 'supervisor@gmail.com') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No eres supervisor, no puedes ingresar.'),
+            ),
+          );
+          return;
+        }
+
+        // Iniciar sesión con Firebase Auth
         UserCredential userCredential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController2.text,
+          email: email,
           password: _passwordController2.text,
         );
 
+        // Redireccionar al usuario a la pantalla de administrador
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const SelectBusScreenAdmin()),
         );
 
+        // Mostrar un mensaje de inicio de sesión exitoso
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Inicio de Sesión, Exitoso!'),
+            content: Text('Inicio de Sesión Exitoso!'),
           ),
         );
       } catch (e) {
         print('Error de inicio de sesión: $e');
 
+        // Mostrar un cuadro de diálogo con el mensaje de error
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Error'),
               content: const Text(
-                  'Error al iniciar sesion, verifica tu correo y contraseña'),
+                  'Error al iniciar sesión, verifica tu correo y contraseña'),
               actions: <Widget>[
                 TextButton(
                   child: const Text('OK'),
@@ -141,10 +158,13 @@ class _ContentView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
+              keyboardType:TextInputType.emailAddress,
               controller: emailController,
               decoration: const InputDecoration(
+        
                 labelText: 'Correo Electrónico',
                 hintText: 'correo@gmail.com',
+                
               ),
               validator: (value) {
                 if (value!.isEmpty) {

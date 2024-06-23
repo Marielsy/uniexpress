@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:uniexpress/login/admin/login_2.dart';
+import 'package:uniexpress/register.dart';
 import 'package:uniexpress/splahs/select_screen.dart';
 
 Future<void> main() async {
@@ -13,12 +15,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: ScreenSelect(),
-      ),
+      initialRoute: 'ScreenSelect',
+      routes: {
+        'ScreenSelect':(_) =>  const ScreenSelect(),
+        'loginAdmin':(_)=>  const LoginAdmin(),
+        'registerPage':(_)=>  const RegisterPage(),
+
+      },
     );
   }
 }

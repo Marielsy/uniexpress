@@ -42,7 +42,7 @@ class _SelectBusScreenState extends State<SelectBusScreen> {
                 crossAxisSpacing: 24,
                 mainAxisSpacing: 24,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 14),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               itemCount: 20,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
@@ -82,9 +82,9 @@ class _SelectBusScreenState extends State<SelectBusScreen> {
             routeList: [
               //TODO: read from the API
               'T01 Terminal - Agronomía',
-              'P02 Parque - Agronomía',
-              'T42 Terminal - Ing Informática',
-              'T06 Terminal - Comedor',
+              'C02 Centro- Agronomía',
+              'T42 Terminal - Ingeniera',
+              'T06 Terminal - Rectorado',
             ],
           ),
         );

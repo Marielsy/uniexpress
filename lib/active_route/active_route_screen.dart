@@ -146,7 +146,7 @@ class _ContentViewSelectRoute extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPage(),
+                      builder: (context) => const LoginPage(),
                     ),
                   );
                 },
@@ -203,8 +203,10 @@ class _DetailsView extends StatelessWidget {
               subtitle: '03 : 00 PM',
             ),
           ],
+          
         ),
         SizedBox(height: 20),
+        
       ],
     );
   }

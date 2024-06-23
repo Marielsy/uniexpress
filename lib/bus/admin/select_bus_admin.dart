@@ -1,7 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
+import 'package:uniexpress/login/admin/login_2.dart';
+import 'package:uniexpress/register.dart';
+import 'package:uniexpress/register_admin.dart';
 import 'package:uniexpress/utils/constants.dart';
 
 class SelectBusScreenAdmin extends StatefulWidget {
@@ -68,22 +70,81 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
 
   void showRouteModal() {
     showModalBottomSheet(
-      // backgroundColor: Colors.transparent,
       context: context,
-      showDragHandle: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(32.0),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
       ),
       builder: (BuildContext context) {
         return const SizedBox(
-          height: 400,
+          height: 250,
           child: SelectRouteBottomSheet2(
             routeList: [
               //TODO: read from the API
               'Activo',
               'Inactivo',
+            ],
+          ),
+        );
+      },
+    ).whenComplete(() {
+      _showModalbuttons(context);
+    });
+  }
+
+  void _showModalbuttons(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Selecciona una opción',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(65, 75, 178, 1),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                     Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginAdmin(),
+                    ),
+                  );
+                    },
+                    child: const Text('Salir'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterPage(),
+                    ),
+                  );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(65, 75, 178, 1),
+                    ),
+                    child: const Text(
+                      'Registrar transportista',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         );
@@ -129,63 +190,57 @@ class _TransportListCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final textColor = (isSelected) ? Colors.white : Colors.black;
 
-    return Stack(children: <Widget>[
-      Container(
-        decoration: BoxDecoration(
-          color: isSelected
-              ? Constants.primaryColor
-              : const Color.fromRGBO(236, 236, 236, 1),
-          borderRadius: const BorderRadius.all(Radius.circular(16)), //tarjetas
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, (isSelected) ? 4 : 1),
-              blurRadius: (isSelected) ? 8 : 4,
-              spreadRadius: 0,
-              color: Colors.black.withOpacity(0.25),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            const Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.0),
-                child: Image(
-                  image: AssetImage('assets/general/bus-icon.png'),
-                  fit: BoxFit.fitWidth,
+    return Stack(
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            color: isSelected
+                ? Constants.primaryColor
+                : const Color.fromRGBO(236, 236, 236, 1),
+            borderRadius:
+                const BorderRadius.all(Radius.circular(16)), //tarjetas
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, (isSelected) ? 4 : 1),
+                blurRadius: (isSelected) ? 8 : 4,
+                spreadRadius: 0,
+                color: Colors.black.withOpacity(0.25),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              const Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.0),
+                  child: Image(
+                    image: AssetImage('assets/general/bus-icon.png'),
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              'Nombre Apellido',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: textColor,
+              Text(
+                'Nombre Apellido',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                ),
               ),
-            ),
-            Text(
-              'transportista ${(index + 1)}',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: textColor,
+              Text(
+                'transportista ${(index + 1)}',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: textColor,
+                ),
               ),
-            ),
-            const SizedBox(height: 5),
-          ],
+              const SizedBox(height: 5),
+            ],
+          ),
         ),
-      ),
-      // Row(
-      //   children: [
-      //     CustomButton(
-      //       title: 'Resgistro',
-      //       isTransparent: true,
-      //       onPressed: () {},
-      //     )
-      //   ],
-      // )
-    ]);
+      ],
+    );
   }
 }
 
