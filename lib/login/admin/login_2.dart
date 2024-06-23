@@ -52,7 +52,7 @@ class _LoginAdminState extends State<LoginAdmin> {
         ),
         SizedBox(height: 5),
         Text(
-          'Transportista',
+          'Supervisor',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w400,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
 import 'package:uniexpress/login/admin/login_2.dart';
+import 'package:uniexpress/login/driver/login_screen.dart';
 import 'package:uniexpress/register.dart';
 import 'package:uniexpress/register_admin.dart';
 import 'package:uniexpress/utils/constants.dart';
@@ -67,29 +68,29 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
       ),
     );
   }
-
-  void showRouteModal() {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
-      ),
-      builder: (BuildContext context) {
-        return const SizedBox(
-          height: 250,
-          child: SelectRouteBottomSheet2(
-            routeList: [
-              //TODO: read from the API
-              'Activo',
-              'Inactivo',
-            ],
-          ),
-        );
-      },
-    ).whenComplete(() {
-      _showModalbuttons(context);
-    });
-  }
+void showRouteModal() {
+  showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
+    ),
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 250,
+        child: SelectRouteBottomSheet2(
+          routeList: ['Activo', 'Inactivo'],
+          onOptionSelected: (selectedOption) {
+            // Aquí manejas la opción seleccionada ('Activo' o 'Inactivo')
+            print('Opción seleccionada: $selectedOption');
+            // Puedes hacer más aquí según lo que necesites
+          },
+        ),
+      );
+    },
+  ).whenComplete(() {
+    _showModalbuttons(context);
+  });
+}
 
   void _showModalbuttons(BuildContext context) {
     showModalBottomSheet(
@@ -128,12 +129,8 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
-                    ),
-                  );
+                      Navigator.of(context)
+                          .pushReplacementNamed('registerPage');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(65, 75, 178, 1),

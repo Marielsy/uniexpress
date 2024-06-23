@@ -5,10 +5,12 @@ import 'package:uniexpress/utils/constants.dart';
 
 class SelectRouteBottomSheet2 extends StatelessWidget {
   final List<String> routeList;
+  final Function(String) onOptionSelected;
 
   const SelectRouteBottomSheet2({
     super.key,
     required this.routeList,
+     required this.onOptionSelected,
   });
 
   @override
@@ -20,7 +22,7 @@ class SelectRouteBottomSheet2 extends StatelessWidget {
       children: [
         const Center(
           child: Text(
-            'Lista de transportes',
+            'Estado',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -42,7 +44,7 @@ class SelectRouteBottomSheet2 extends StatelessWidget {
                       routeList[index],
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const Text('Puntos claves de la ruta'),
+                    const Text('Transportista'),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Divider(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
+import 'package:uniexpress/bus/driver/select_route_bottom_sheet.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
 import 'package:uniexpress/utils/constants.dart';
 
@@ -78,7 +79,7 @@ class _AdminScreen extends State<AdminScreen> {
       builder: (BuildContext context) {
         return const SizedBox(
           height: 400,
-          child: SelectRouteBottomSheet2(
+          child: SelectRouteBottomSheet(
             routeList: [
               //TODO: read from the API
               'T01 Terminal - Agronomía',
