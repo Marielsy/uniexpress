@@ -79,6 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
             .doc(userCredential.user!.uid)
             .set({
           'email': _emailController.text,
+          'password':_passwordController.text,
           // Nota: No se recomienda guardar contraseñas en texto plano en Firestore
           // 'password': _passwordController.text 
           // Puedes agregar más campos de usuario aquí según necesites
