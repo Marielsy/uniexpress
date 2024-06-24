@@ -16,6 +16,7 @@ class MarkerPoint extends StatelessWidget {
     );
   }
 }
+
 List<List<double>> getCoordinates() {
   return [
     [9.917715, -67.368376],

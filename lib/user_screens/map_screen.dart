@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 class Constants {
   static const primaryColor = Color.fromRGBO(65, 75, 178, 1);
 }
+
 // ignore: constant_identifier_names
 const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoiY2FydmFqYWxtYXJpZWxzeSIsImEiOiJjbHZyOWdkZGEwa2JlMmttZzNuZ2V3Nm52In0.XzknMqNCOBNtUgnHKvCHhg';
@@ -17,7 +18,7 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body:  FlutterMap(
+      body: FlutterMap(
         options: const MapOptions(
             initialCenter: myPosition,
             minZoom: 5,

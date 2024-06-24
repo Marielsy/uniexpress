@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:uniexpress/login/admin/login_2.dart';
 import 'package:uniexpress/register.dart';
 import 'package:uniexpress/splahs/select_screen.dart';
+import 'package:uniexpress/splahs/splahs.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,14 +16,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'ScreenSelect',
+      initialRoute: 'SplashScreen',
       routes: {
-        'ScreenSelect':(_) =>  const ScreenSelect(),
-        'loginAdmin':(_)=>  const LoginAdmin(),
-        'registerPage':(_)=>  const RegisterPage(),
-
+        'SplashScreen': (_) => const SplashScreen(),
+        'ScreenSelect': (_) => const ScreenSelect(),
+        'loginAdmin': (_) => const LoginAdmin(),
+        'registerPage': (_) => const RegisterPage(),
       },
     );
   }

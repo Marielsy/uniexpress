@@ -3,7 +3,6 @@ import 'package:uniexpress/login/admin/login_2.dart';
 import 'package:uniexpress/register.dart';
 import 'package:uniexpress/register_admin.dart';
 
-
 class ModalButtons extends StatelessWidget {
   const ModalButtons({Key? key}) : super(key: key);
 
@@ -35,8 +34,8 @@ class ModalButtons extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginAdmin()));
-
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const LoginAdmin()));
                     },
                     child: const Text('Salir'),
                   ),
@@ -46,7 +45,8 @@ class ModalButtons extends StatelessWidget {
                       // Por ejemplo, navegar a una pantalla de registro
                       Navigator.of(context).pop(); // Cerrar el modal actual
                       // Navegar a la pantalla de registro
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const RegisterPage()));
                     },
                     child: const Text('Registrar'),
                   ),

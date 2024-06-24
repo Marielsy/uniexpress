@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+// ignore: depend_on_referenced_packages
+import 'package:location/location.dart' as location;
 
 class Constants {
   static const primaryColor = Color.fromRGBO(65, 75, 178, 1);
@@ -31,6 +33,29 @@ class _DashboardUserState extends State<DashboardUser> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       updateLocation();
     });
+  }
+
+  void _requestLocationPermission() async {
+    final location.Location locationService = location.Location();
+    bool _serviceEnabled;
+    location.PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await locationService.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await locationService.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await locationService.hasPermission();
+    if (_permissionGranted == location.PermissionStatus.denied) {
+      _permissionGranted = await locationService.requestPermission();
+      if (_permissionGranted != location.PermissionStatus.granted) {
+        // Si el usuario no concede permisos, puedes manejarlo aquí
+        return;
+      }
+    }
   }
 
   List<double> currentLocation = [9.917715, -67.368376];
@@ -68,7 +93,7 @@ class _DashboardUserState extends State<DashboardUser> {
 
   void updateLocation() async {
     for (var coordinate in getCoordinates()) {
-      await Future.delayed(const Duration(seconds: 5), () {
+      await Future.delayed(const Duration(seconds: 3), () {
         setState(() {
           currentLocation = coordinate;
         });
@@ -201,19 +226,7 @@ class _DashboardUserState extends State<DashboardUser> {
                   child: const Icon(Icons.location_on,
                       color: Colors.pink, size: 50.0),
                 ),
-              ]
-
-                  // getCoordinates().map(
-
-                  //   (coord) =>  Marker(
-                  //     width: 200.0,
-                  //     height: 200.0,
-                  //     point: LatLng(coord.first, coord.last),
-                  //     child: const Icon(Icons.bus_alert_rounded,
-                  //         color: Colors.black, size: 50.0),
-                  //   ),
-                  // ).toList(),
-                  ),
+              ]),
             ],
           ),
           Positioned(

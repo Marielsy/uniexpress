@@ -158,13 +158,11 @@ class _ContentView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextFormField(
-              keyboardType:TextInputType.emailAddress,
+              keyboardType: TextInputType.emailAddress,
               controller: emailController,
               decoration: const InputDecoration(
-        
                 labelText: 'Correo Electrónico',
                 hintText: 'correo@gmail.com',
-                
               ),
               validator: (value) {
                 if (value!.isEmpty) {

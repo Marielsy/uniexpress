@@ -6,12 +6,11 @@ class CustomButtonAdmin extends StatelessWidget {
   final bool isTransparent;
   final Function()? onPressed;
 
-  const CustomButtonAdmin({
-    super.key,
-    required this.title,
-    this.isTransparent = false,
-    this.onPressed
-  });
+  const CustomButtonAdmin(
+      {super.key,
+      required this.title,
+      this.isTransparent = false,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {

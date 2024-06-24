@@ -30,7 +30,8 @@ class _LoginPageState extends State<LoginPage> {
               emailController: _emailController2,
               passwordController: _passwordController2,
               formKey: _formKey,
-              onPressed: _submitForm, // Aquí se coloca una función vacía para el botón de inicio de sesión
+              onPressed:
+                  _submitForm, // Aquí se coloca una función vacía para el botón de inicio de sesión
             ),
           ],
         ),
@@ -63,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
   }
-    void _submitForm() async {
+
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       try {
         UserCredential userCredential =
