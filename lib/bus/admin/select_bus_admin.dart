@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
-import 'package:uniexpress/login/admin/login_2.dart';
-import 'package:uniexpress/login/driver/login_screen.dart';
-import 'package:uniexpress/register.dart';
-import 'package:uniexpress/register_admin.dart';
+import 'package:uniexpress/login/admin/login_admin.dart';
 import 'package:uniexpress/utils/constants.dart';
 
 class SelectBusScreenAdmin extends StatefulWidget {

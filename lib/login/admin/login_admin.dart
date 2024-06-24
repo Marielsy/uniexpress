@@ -80,20 +80,19 @@ class _LoginAdminState extends State<LoginAdmin> {
           return;
         }
 
-        // Iniciar sesión con Firebase Auth
         UserCredential userCredential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
           password: _passwordController2.text,
         );
 
-        // Redireccionar al usuario a la pantalla de administrador
+        // Redireccionar al usuario a la pantalla de admin
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const SelectBusScreenAdmin()),
         );
 
-        // Mostrar un mensaje de inicio de sesión exitoso
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Inicio de Sesión Exitoso!'),
@@ -102,7 +101,6 @@ class _LoginAdminState extends State<LoginAdmin> {
       } catch (e) {
         print('Error de inicio de sesión: $e');
 
-        // Mostrar un cuadro de diálogo con el mensaje de error
         showDialog(
           context: context,
           builder: (BuildContext context) {
