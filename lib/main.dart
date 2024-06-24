@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:uniexpress/login/admin/login_admin.dart';
+import 'package:uniexpress/login/admin/login_2.dart';
 import 'package:uniexpress/register.dart';
 import 'package:uniexpress/splahs/select_screen.dart';
 import 'package:uniexpress/splahs/splahs.dart';

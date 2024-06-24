@@ -27,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(
-        65,
-        75,
-        178,
+        0,
+        4,
+        80,
         1,
       ),
       body: Center(
