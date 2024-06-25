@@ -77,6 +77,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
         });
 
         // Mostrar mensaje de éxito
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Registration successful!'),
@@ -87,6 +88,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
       } catch (e) {
         // Manejar errores de registro o almacenamiento
+        // ignore: avoid_print
         print('Error de registro o almacenamiento: $e');
 
         // Mostrar mensaje de error al usuario

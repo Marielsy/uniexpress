@@ -7,6 +7,7 @@ Future<List> getDriver() async {
   CollectionReference collectionReferenceDriver = db.collection('driver');
 
   QuerySnapshot queryDriver = await collectionReferenceDriver.get();
+  // ignore: avoid_function_literals_in_foreach_calls
   queryDriver.docs.forEach((documento) {});
   return driver;
 }

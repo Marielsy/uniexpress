@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
         'SplashScreen': (_) => const SplashScreen(),
         'ScreenSelect': (_) => const ScreenSelect(),
         'loginAdmin': (_) => const LoginAdmin(),
-        'registerPage': (_) => const RegisterPage(),
+        'registerPage':(_) => const RegisterPage(),
       },
     );
   }

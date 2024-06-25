@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
-import 'package:uniexpress/login/admin/login_2.dart';
-import 'package:uniexpress/utils/constants.dart';
+import 'package:uniexpress/splahs/select_screen.dart';
 
 class SelectBusScreenAdmin extends StatefulWidget {
   const SelectBusScreenAdmin({super.key});
@@ -65,29 +64,31 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
       ),
     );
   }
-void showRouteModal() {
-  showModalBottomSheet(
-    context: context,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
-    ),
-    builder: (BuildContext context) {
-      return SizedBox(
-        height: 250,
-        child: SelectRouteBottomSheet2(
-          routeList: ['Activo', 'Inactivo'],
-          onOptionSelected: (selectedOption) {
-            // Aquí manejas la opción seleccionada ('Activo' o 'Inactivo')
-            print('Opción seleccionada: $selectedOption');
-            // Puedes hacer más aquí según lo que necesites
-          },
-        ),
-      );
-    },
-  ).whenComplete(() {
-    _showModalbuttons(context);
-  });
-}
+ void showRouteModal() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
+      ),
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 250,
+          child: SelectRouteBottomSheet2(
+            routeList: const ['Activo', 'Inactivo'],
+            onOptionSelected: (selectedOption) {
+              // Aquí manejas la opción seleccionada ('Activo' o 'Inactivo')
+              // ignore: avoid_print
+              print('Opción seleccionada: $selectedOption');
+              // Puedes hacer más aquí según lo que necesites
+            },
+          ),
+        );
+      },
+    ).whenComplete(() {
+      _showModalbuttons(context);
+    });
+  }
+
 
   void _showModalbuttons(BuildContext context) {
     showModalBottomSheet(
@@ -118,7 +119,7 @@ void showRouteModal() {
                      Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LoginAdmin(),
+                      builder: (context) => const ScreenSelect(),
                     ),
                   );
                     },

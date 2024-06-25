@@ -12,6 +12,7 @@ const MAPBOX_ACCESS_TOKEN =
 const myPosition = LatLng(9.9115200, -67.3538100);
 
 class DashboardUser extends StatefulWidget {
+  // ignore: use_super_parameters
   const DashboardUser({
     Key? key,
     this.placeholder = 'Ejkjk',
@@ -32,38 +33,27 @@ class _DashboardUserState extends State<DashboardUser> {
       updateLocation();
     });
   }
-  
 
-  List<double> currentLocation = [9.917715, -67.368376];
+  List<double> currentLocation = [9.900672, -67.379264];
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
 
   List<List<double>> getCoordinates() {
     return [
-      [9.917715, -67.368376],
-      [9.917373, -67.368792],
-      [9.917001, -67.369236],
-      [9.916527, -67.369788],
-      [9.915836, -67.370636],
-      [9.915426, -67.372254],
-      [9.914967, -67.373376],
-      [9.913634, -67.375719],
-      [9.911506, -67.377935],
-      [9.909865, -67.379617],
-      [9.906994, -67.381097],
-      [9.903473, -67.386904],
-      [9.901327, -67.391383],
-      [9.901980, -67.394104],
-      [9.901865, -67.394800],
-      [9.901737, -67.395382],
-      [9.900552, -67.395472],
-      [9.900313, -67.395900],
-      [9.900713, -67.396415],
-      [9.900811, -67.397035],
-      [9.900498, -67.397374],
-      [9.899979, -67.397324],
-      [9.898135, -67.391306],
-      [9.893394, -67.385819]
+      [9.900672, -67.379264],
+      [9.910068, -67.379264],
+      [9.914089, -67.375096],
+      [9.917075, -67.369107],
+      [9.916008, -67.362486],
+      [9.912145, -67.357174],
+      [9.910039, -67.359223],
+      [9.909278, -67.362533],
+      [9.908804, -67.363805],
+      [9.905955, -67.369895],
+      [9.902861, -67.372808],
+      [9.901624, -67.375714],
+      [9.893469, -67.386405],
+      [9.897284, -67.391362],
     ];
   }
 
@@ -149,9 +139,9 @@ class _DashboardUserState extends State<DashboardUser> {
         ];
       case 'Medicina':
         return [
-          'T42 Terminal - Medicina\nterminal, av bolivar, circo'
+          'T42 Terminal - Rectorado\nterminal, av bolivar, circo'
               '                10:56am',
-          'C07 Casona - Medicina\nterminal, av bolivar, circo'
+          'C07 Casona - Rectorado\nterminal, av bolivar, circo'
               '              10:56am',
         ];
       case 'Ingenieria':
@@ -406,6 +396,7 @@ class _DashboardUserState extends State<DashboardUser> {
 
       items: destinationValues.map<DropdownMenuItem<String>>((map) {
         String key = map.keys.first;
+        // ignore: unused_local_variable
         List<double> value = map.values.first;
 
         return DropdownMenuItem<String>(

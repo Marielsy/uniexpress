@@ -1,12 +1,16 @@
+// ignore_for_file: unused_local_variable, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/driver/select_bus_screen.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
 
 class LoginPage extends StatefulWidget {
+  // ignore: use_super_parameters
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -31,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               passwordController: _passwordController2,
               formKey: _formKey,
               onPressed:
-                  _submitForm, // Aquí se coloca una función vacía para el botón de inicio de sesión
+                  _submitForm, 
             ),
           ],
         ),
@@ -178,7 +182,7 @@ class _ContentView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(65, 75, 178, 1),
+                  backgroundColor: const Color.fromRGBO(65, 75, 178, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

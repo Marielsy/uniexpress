@@ -7,6 +7,7 @@ class LoginAdmin extends StatefulWidget {
   const LoginAdmin({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginAdminState createState() => _LoginAdminState();
 }
 
@@ -80,6 +81,7 @@ class _LoginAdminState extends State<LoginAdmin> {
           return;
         }
 
+        // ignore: unused_local_variable
         UserCredential userCredential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
@@ -88,20 +90,24 @@ class _LoginAdminState extends State<LoginAdmin> {
 
         // Redireccionar al usuario a la pantalla de admin
         Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => const SelectBusScreenAdmin()),
         );
 
 
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Inicio de Sesión Exitoso!'),
           ),
         );
       } catch (e) {
+        // ignore: avoid_print
         print('Error de inicio de sesión: $e');
 
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -190,7 +196,7 @@ class _ContentView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(65, 75, 178, 1),
+                  backgroundColor: const Color.fromRGBO(65, 75, 178, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

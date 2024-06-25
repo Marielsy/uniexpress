@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uniexpress/bus/driver/select_bus_screen.dart';
 import 'package:uniexpress/components/driver/custom_button.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
-import 'package:uniexpress/login/driver/login_screen.dart';
-import 'package:uniexpress/utils/constants.dart';
+import 'package:uniexpress/splahs/select_screen.dart';
 
 class ActiveRouteScreen extends StatelessWidget {
   const ActiveRouteScreen({super.key});
@@ -146,7 +145,7 @@ class _ContentViewSelectRoute extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
+                      builder: (context) => const ScreenSelect(),
                     ),
                   );
                 },

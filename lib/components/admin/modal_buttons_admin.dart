@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uniexpress/login/admin/login_2.dart';
-import 'package:uniexpress/login/admin/login_admin.dart';
 import 'package:uniexpress/register.dart';
-import 'package:uniexpress/register_admin.dart';
 
 class ModalButtons extends StatelessWidget {
-  const ModalButtons({Key? key}) : super(key: key);
+  const ModalButtons({super.key});
 
   void _showModalbuttons(BuildContext context) {
     showModalBottomSheet(

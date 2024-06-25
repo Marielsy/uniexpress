@@ -7,6 +7,7 @@ class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RegisterPageState createState() => _RegisterPageState();
 }
 
@@ -86,6 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
 
         // Mostrar mensaje de éxito
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Registro exitoso!'),
@@ -96,10 +98,12 @@ class _RegisterPageState extends State<RegisterPage> {
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NextScreen()));
       } catch (e) {
         // Manejar errores de registro o almacenamiento
+        // ignore: avoid_print
         print('Error de registro o almacenamiento: $e');
 
         // Mostrar mensaje de error al usuario
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -186,7 +190,7 @@ class _ContentView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(65, 75, 178, 1),
+                  backgroundColor: const Color.fromRGBO(65, 75, 178, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
