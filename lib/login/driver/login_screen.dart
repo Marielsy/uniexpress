@@ -6,11 +6,9 @@ import 'package:uniexpress/bus/driver/select_bus_screen.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
 
 class LoginPage extends StatefulWidget {
-  // ignore: use_super_parameters
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -18,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController2 = TextEditingController();
   final TextEditingController _passwordController2 = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +33,9 @@ class _LoginPageState extends State<LoginPage> {
               emailController: _emailController2,
               passwordController: _passwordController2,
               formKey: _formKey,
-              onPressed:
-                  _submitForm, 
+              onPressed: _submitForm,
+              obscureText: _obscureText,
+              togglePasswordVisibility: _togglePasswordVisibility,
             ),
           ],
         ),
@@ -79,12 +79,10 @@ class _LoginPageState extends State<LoginPage> {
         );
 
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => const SelectBusScreen()),
         );
 
-        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Inicio de Sesión, Exitoso!'),
@@ -94,7 +92,6 @@ class _LoginPageState extends State<LoginPage> {
         print('Error de inicio de sesión: $e');
 
         showDialog(
-          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -115,6 +112,12 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 }
 
 class _ContentView extends StatelessWidget {
@@ -122,12 +125,16 @@ class _ContentView extends StatelessWidget {
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
   final VoidCallback onPressed;
+  final bool obscureText;
+  final VoidCallback togglePasswordVisibility;
 
   const _ContentView({
     required this.emailController,
     required this.passwordController,
     required this.formKey,
     required this.onPressed,
+    required this.obscureText,
+    required this.togglePasswordVisibility,
   });
 
   @override
@@ -164,11 +171,18 @@ class _ContentView extends StatelessWidget {
             const SizedBox(height: 24),
             TextFormField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Contraseña',
                 hintText: 'Contraseña',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    obscureText ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: togglePasswordVisibility,
+                ),
               ),
-              obscureText: true,
+              obscureText: obscureText,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Por favor, ingresa tu contraseña';
@@ -178,7 +192,7 @@ class _ContentView extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             SizedBox(
-              width: double.infinity, // Ancho completo del contenedor padre
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(

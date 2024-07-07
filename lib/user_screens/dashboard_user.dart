@@ -37,7 +37,7 @@ class _DashboardUserState extends State<DashboardUser> {
     });
   }
 
-  List<double> currentUser = [9.917473, -67.368669]; //person
+  List<double> currentUser = [9.917735,-67.368834]; //person
   List<double> currentLocation2 = [9.917075, -67.369107]; //villa o
   List<double> currentLocation3 = [9.916617, -67.369704]; //casaA
   List<double> currentLocation4 = [9.91584, -67.370645]; //evaristo
@@ -54,14 +54,14 @@ class _DashboardUserState extends State<DashboardUser> {
   List<double> currentLocation16 = [9.897291, -67.391353]; //banco de venezuela
   List<double> currentLocation17 = [9.893479, -67.386363]; //redoma
   List<double> currentLocation18 = [9.90058, -67.377366]; //redoma
-  List<double> currentLocation19 = [9.901914, -67.375369]; //redoma
-  List<double> currentLocation20 = [9.902517, -67.373323]; //redoma
-  List<double> currentLocation21 = [9.904325, -67.370644]; //redoma
-  List<double> currentLocation22 = [9.905035, -67.369275]; //redoma
-  List<double> currentLocation23 = [9.904025, -67.367116]; //redoma
-  List<double> currentLocation24 = [9.904701, -67.364808]; //redoma
-  List<double> currentLocation25 = [9.905266, -67.364139]; //redoma
-  List<double> currentLocation26 = [9.909193, -67.362551]; //redoma
+  List<double> currentLocation19 = [9.901914, -67.375369]; 
+  List<double> currentLocation20 = [9.902517, -67.373323]; 
+  List<double> currentLocation21 = [9.904325, -67.370644]; 
+  List<double> currentLocation22 = [9.905035, -67.369275]; 
+  List<double> currentLocation23 = [9.904025, -67.367116]; 
+  List<double> currentLocation24 = [9.904701, -67.364808]; 
+  List<double> currentLocation25 = [9.905266, -67.364139];
+  List<double> currentLocation26 = [9.909193, -67.362551]; 
   List<double> currentLocation27 = [9.908670, -67.361130]; //redoma
   List<double> currentLocation28 = [9.907989, -67.361500]; //redoma
   List<double> currentLocation29 = [9.907368, -67.360158]; //redoma
@@ -297,7 +297,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.person,
                   size: 60.0,
-                  color: Color.fromARGB(255, 193, 156, 43),
+                  color:Colors.black,
                 ),
               ),
               Marker(
@@ -475,9 +475,9 @@ class _DashboardUserState extends State<DashboardUser> {
                 height: 80.0,
                 point: LatLng(currentLocation22[0], currentLocation22[1]),
                 child: const Icon(
-                  Icons.location_pin,
+                  Icons.person,
                   size: 40.0,
-                  color: Colors.red,
+                  color: Colors.black,
                 ),
               ),
               Marker(

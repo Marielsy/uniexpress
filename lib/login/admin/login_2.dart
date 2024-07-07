@@ -7,7 +7,6 @@ class LoginAdmin extends StatefulWidget {
   const LoginAdmin({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginAdminState createState() => _LoginAdminState();
 }
 
@@ -15,6 +14,7 @@ class _LoginAdminState extends State<LoginAdmin> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController2 = TextEditingController();
   final TextEditingController _passwordController2 = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,8 @@ class _LoginAdminState extends State<LoginAdmin> {
               passwordController: _passwordController2,
               formKey: _formKey,
               onPressed: _submitForm,
+              obscureText: _obscureText,
+              togglePasswordVisibility: _togglePasswordVisibility,
             ),
           ],
         ),
@@ -81,7 +83,6 @@ class _LoginAdminState extends State<LoginAdmin> {
           return;
         }
 
-        // ignore: unused_local_variable
         UserCredential userCredential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
@@ -90,24 +91,19 @@ class _LoginAdminState extends State<LoginAdmin> {
 
         // Redireccionar al usuario a la pantalla de admin
         Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => const SelectBusScreenAdmin()),
         );
 
-
-        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Inicio de Sesión Exitoso!'),
           ),
         );
       } catch (e) {
-        // ignore: avoid_print
         print('Error de inicio de sesión: $e');
 
         showDialog(
-          // ignore: use_build_context_synchronously
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
@@ -128,6 +124,12 @@ class _LoginAdminState extends State<LoginAdmin> {
       }
     }
   }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 }
 
 class _ContentView extends StatelessWidget {
@@ -135,12 +137,16 @@ class _ContentView extends StatelessWidget {
   final TextEditingController passwordController;
   final GlobalKey<FormState> formKey;
   final VoidCallback onPressed;
+  final bool obscureText;
+  final VoidCallback togglePasswordVisibility;
 
   const _ContentView({
     required this.emailController,
     required this.passwordController,
     required this.formKey,
     required this.onPressed,
+    required this.obscureText,
+    required this.togglePasswordVisibility,
   });
 
   @override
@@ -178,11 +184,18 @@ class _ContentView extends StatelessWidget {
             const SizedBox(height: 24),
             TextFormField(
               controller: passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Contraseña',
                 hintText: 'Contraseña',
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    obscureText ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                  onPressed: togglePasswordVisibility,
+                ),
               ),
-              obscureText: true,
+              obscureText: obscureText,
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Por favor, ingresa tu contraseña';
@@ -192,7 +205,7 @@ class _ContentView extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             SizedBox(
-              width: double.infinity, // Ancho completo del contenedor padre
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(

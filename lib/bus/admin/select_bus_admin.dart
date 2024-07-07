@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:uniexpress/bus/admin/select_route_bottom_Admin.dart';
 import 'package:uniexpress/components/driver/header_view.dart';
 import 'package:uniexpress/splahs/select_screen.dart';
 
@@ -12,10 +11,11 @@ class SelectBusScreenAdmin extends StatefulWidget {
 
 class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
   int? isSelected;
+  String? _selectedOption; // Definir la variable de estado
 
   @override
   Widget build(BuildContext context) {
-    //Calculate Inset top SafeAreat
+    // Calculate Inset top SafeArea
     final topSafeArea = MediaQuery.of(context).padding;
     double headerHeight = 108 + topSafeArea.top;
     const double borderRadius = 30;
@@ -64,7 +64,8 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
       ),
     );
   }
- void showRouteModal() {
+
+  void showRouteModal() {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -73,14 +74,63 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
       builder: (BuildContext context) {
         return SizedBox(
           height: 250,
-          child: SelectRouteBottomSheet2(
-            routeList: const ['Activo', 'Inactivo'],
-            onOptionSelected: (selectedOption) {
-              // Aquí manejas la opción seleccionada ('Activo' o 'Inactivo')
-              // ignore: avoid_print
-              print('Opción seleccionada: $selectedOption');
-              // Puedes hacer más aquí según lo que necesites
-            },
+          child: Container(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Estado',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(65, 75, 178, 1),
+                  ),
+                ),
+                ListTile(
+                  leading: Checkbox(
+                    value: _selectedOption == 'Activo',
+                    onChanged: (bool? value) {
+                      setState(() {
+                        _selectedOption = 'Activo';
+                      });
+                      print('Opción seleccionada: Activo');
+                    },
+                  ),
+                  title: Text('Activo'),
+                  onTap: () {
+                    setState(() {
+                      _selectedOption = 'Activo';
+                    });
+                    print('Opción seleccionada: Activo');
+                  },
+                ),
+                ListTile(
+                  leading: Checkbox(
+                    value: _selectedOption == 'Inactivo',
+                    onChanged: (bool? value) {
+                      setState(() {
+                        _selectedOption = 'Inactivo';
+                      });
+                      print('Opción seleccionada: Inactivo');
+                    },
+                  ),
+                  title: const Text('Inactivo'),
+                  onTap: () {
+                    setState(() {
+                      _selectedOption = 'Inactivo';
+                    });
+                    print('Opción seleccionada: Inactivo');
+                  },
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Volver'),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -88,7 +138,6 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
       _showModalbuttons(context);
     });
   }
-
 
   void _showModalbuttons(BuildContext context) {
     showModalBottomSheet(
@@ -116,12 +165,12 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                     Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ScreenSelect(),
-                    ),
-                  );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ScreenSelect(),
+                        ),
+                      );
                     },
                     child: const Text('Salir'),
                   ),
@@ -155,6 +204,9 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
         child: const Column(
           children: [
             Spacer(),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               'Supervisor',
               style: TextStyle(
@@ -163,7 +215,7 @@ class _SelectBusScreenAdminState extends State<SelectBusScreenAdmin> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 10),
             Spacer()
           ],
         ),
@@ -190,10 +242,10 @@ class _TransportListCell extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: isSelected
-                ? Constants.primaryColor
+                ? const Color.fromRGBO(65, 75, 178, 1)
                 : const Color.fromRGBO(236, 236, 236, 1),
             borderRadius:
-                const BorderRadius.all(Radius.circular(16)), //tarjetas
+                const BorderRadius.all(Radius.circular(16)), // tarjetas
             boxShadow: [
               BoxShadow(
                 offset: Offset(0, (isSelected) ? 4 : 1),
@@ -267,7 +319,7 @@ class _ContentViewSelectRoute extends StatelessWidget {
     );
 
     return Padding(
-      padding: EdgeInsets.only(top: headerHeight - (borderRadius * 2)),
+      padding: EdgeInsets.only(top: headerHeight - (borderRadius * 1)),
       child: Container(
         width: double.infinity,
         decoration: boxDecoration,
@@ -277,14 +329,14 @@ class _ContentViewSelectRoute extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 24),
-              Text(
-                'Transportistas',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Constants.primaryColor,
-                ),
-              ),
+              // Text(
+              //   'Transportistas',
+              //   style: TextStyle(
+              //     fontSize: 24,
+              //     fontWeight: FontWeight.bold,
+              //     color: Constants.primaryColor,
+              //   ),
+              // ),
             ],
           ),
         ),
