@@ -27,6 +27,8 @@ class DashboardUser extends StatefulWidget {
 }
 
 class _DashboardUserState extends State<DashboardUser> {
+    final MapController _mapController = MapController();
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +37,7 @@ class _DashboardUserState extends State<DashboardUser> {
     });
   }
 
+  List<double> currentUser = [9.917473, -67.368669]; //person
   List<double> currentLocation2 = [9.917075, -67.369107]; //villa o
   List<double> currentLocation3 = [9.916617, -67.369704]; //casaA
   List<double> currentLocation4 = [9.91584, -67.370645]; //evaristo
@@ -47,10 +50,7 @@ class _DashboardUserState extends State<DashboardUser> {
   List<double> currentLocation12 = [9.901269, -67.391518]; //puerta negra
   List<double> currentLocation13 = [9.900817, -67.396952]; //licoreria
   List<double> currentLocation14 = [9.900311, -67.397383]; //panaderia Miranda
-  List<double> currentLocation15 = [
-    9.899950,
-    -67.396748
-  ]; //casona universitaria
+  List<double> currentLocation15 = [9.899950, -67.396748]; //casona universitaria
   List<double> currentLocation16 = [9.897291, -67.391353]; //banco de venezuela
   List<double> currentLocation17 = [9.893479, -67.386363]; //redoma
   List<double> currentLocation18 = [9.90058, -67.377366]; //redoma
@@ -77,7 +77,7 @@ class _DashboardUserState extends State<DashboardUser> {
   List<double> currentLocation39 = [9.917078, -67.365971]; //redoma
   List<double> currentLocation40 = [9.917732, -67.368369]; //redoma
 
-  List<double> currentLocation = [9.917075, -67.369107];
+  List<double> currentLocation = [9.917473, -67.368669];
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
 
@@ -129,6 +129,7 @@ class _DashboardUserState extends State<DashboardUser> {
         setState(() {
           currentLocation = coordinate;
         });
+        _mapController.move(LatLng(currentLocation[0], currentLocation[1]), 15.0);
         // ignore: avoid_print
         // print("hjhjhj");
       });
@@ -198,31 +199,31 @@ class _DashboardUserState extends State<DashboardUser> {
     switch (selectedValue) {
       case 'Agronomia':
         return [
-          'T01 Terminal - Agronomía\nterminal, av bolivar, circo'
-              '              10:56am',
-          'V02 Villa Olimpica - Agronomía\nterminal, av bolivar, circo'
+          'T01 Terminal - Agronomía\nterminal, av Bolivar,Casona '
+              '              8:00am',
+          'V02 Villa Olimpica - Agronomía\nCentro,'
               '              10:56am',
         ];
       case 'Medicina':
         return [
-          'T42 Terminal - Rectorado\nterminal, av bolivar, circo'
-              '                10:56am',
-          'C07 Casona - Rectorado\nterminal, av bolivar, circo'
-              '              10:56am',
+          'T42 Terminal - Rectorado\nterminal, av bolivar, '
+              '                9:30am',
+          'C07 Casona - Rectorado\nterminal, av bolivar,'
+              '              11:56am',
         ];
       case 'Ingenieria':
         return [
-          'T42 Terminal - Ing Informática\nterminal, av bolivar, circo'
-              '               10:56am',
-          'A15 Agronomia - Ingenieria\nterminal, av bolivar, circo'
+          'T42 Terminal - Ing Informática\nterminal, av bolivar,'
+              '               8:56am',
+          'A15 Agronomia - Ingenieria\nterminal, av bolivar,'
               '                     10:56am',
         ];
       case 'Cs Sociales':
         return [
-          'T06 Terminal - Centro\nterminal, av bolivar, circo'
-              '                 10:56am',
-          'C21 Centro - Cs Sociales\nterminal, av bolivar, circo'
-              '             10:56am',
+          'B06 Banco Obrero, Agronomia, No disponible'
+              '                 11:00am' ,
+          'C21 Centro - Cs Sociales\nterminal, av bolivar,'
+              '             12:00am',
         ];
       default:
         return [];
@@ -234,6 +235,7 @@ class _DashboardUserState extends State<DashboardUser> {
     return Scaffold(
         body: Stack(children: [
       FlutterMap(
+        mapController: _mapController,
           options: MapOptions(
             initialCenter: LatLng(currentLocation[0], currentLocation[1]),
             minZoom: 5,
@@ -265,7 +267,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 width: 200.0,
                 height: 200.0,
                 point: LatLng(currentLocation[0], currentLocation[1]),
-                child: const Icon(Icons.bus_alert_outlined,
+                child: const Icon(Icons.car_crash,
                     color: Colors.black, size: 50.0),
               ),
               Marker(
@@ -286,6 +288,16 @@ class _DashboardUserState extends State<DashboardUser> {
                   Icons.location_pin,
                   size: 40.0,
                   color: Color.fromRGBO(65, 75, 178, 1),
+                ),
+              ),
+              Marker(
+                width: 80.0,
+                height: 80.0,
+                point: LatLng(currentUser[0], currentUser[1]),
+                child: const Icon(
+                  Icons.person,
+                  size: 60.0,
+                  color: Color.fromARGB(255, 193, 156, 43),
                 ),
               ),
               Marker(
@@ -315,7 +327,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -415,7 +427,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -465,7 +477,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -505,7 +517,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -535,7 +547,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -565,7 +577,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -575,7 +587,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -585,7 +597,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -595,7 +607,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(
@@ -635,7 +647,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
+                  color: Colors.red,
                 ),
               ),
               Marker(

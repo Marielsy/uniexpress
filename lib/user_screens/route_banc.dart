@@ -151,31 +151,31 @@ class _DashboardUserState2 extends State<DashboardUser2> {
     switch (selectedValue) {
       case 'Agronomia':
         return [
-          'T01 Terminal - Agronomía\nterminal, av bolivar, circo'
-              '              10:56am',
-          'V02 Villa Olimpica - Agronomía\nterminal, av bolivar, circo'
+          'T01 Terminal - Agronomía\nterminal, av Bolivar,Casona '
+              '              8:00am',
+          'V02 Villa Olimpica - Agronomía\nCentro,'
               '              10:56am',
         ];
       case 'Medicina':
         return [
-          'T42 Terminal - Rectorado\nterminal, av bolivar, circo'
-              '                10:56am',
-          'C07 Casona - Rectorado\nterminal, av bolivar, circo'
-              '              10:56am',
+          'B42   Rectorado\nBanco Obrero, av bolivar, '
+              '                8:30am',
+          'C07 Casona - Rectorado\nterminal, av bolivar,'
+              '              11:56am',
         ];
       case 'Ingenieria':
         return [
-          'T42 Terminal - Ing Informática\nterminal, av bolivar, circo'
-              '               10:56am',
-          'A15 Agronomia - Ingenieria\nterminal, av bolivar, circo'
+          'T42 Terminal - Ing Informática\nterminal, av bolivar,'
+              '               8:56am',
+          'A15 Agronomia - Ingenieria\nterminal, av bolivar,'
               '                     10:56am',
         ];
       case 'Cs Sociales':
         return [
-          'T06 Terminal - Centro\nterminal, av bolivar, circo'
-              '                 10:56am',
-          'C21 Centro - Cs Sociales\nterminal, av bolivar, circo'
-              '             10:56am',
+          'T06 Terminal - Centro\nterminal, av bolivar, No disponible'
+              '                 11:00am' ,
+          'C21 Centro - Cs Sociales\nterminal, av bolivar,'
+              '             12:00am',
         ];
       default:
         return [];
