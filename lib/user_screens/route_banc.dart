@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 // import 'package:location/location.dart' as loc;
-
+//Ruta Centro avenida 
 class Constants {
   static const primaryColor = Color.fromRGBO(65, 75, 178, 1);
 }
@@ -12,9 +12,9 @@ const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoiY2FydmFqYWxtYXJpZWxzeSIsImEiOiJjbHZyOWdkZGEwa2JlMmttZzNuZ2V3Nm52In0.XzknMqNCOBNtUgnHKvCHhg';
 const myPosition = LatLng(9.9115200, -67.3538100);
 
-class DashboardUser extends StatefulWidget {
+class DashboardUser2 extends StatefulWidget {
   // ignore: use_super_parameters
-  const DashboardUser({
+  const DashboardUser2({
     Key? key,
     this.placeholder = 'Ejkjk',
   }) : super(key: key);
@@ -23,109 +23,62 @@ class DashboardUser extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _DashboardUserState createState() => _DashboardUserState();
+  _DashboardUserState2 createState() => _DashboardUserState2();
 }
 
-class _DashboardUserState extends State<DashboardUser> {
+class _DashboardUserState2 extends State<DashboardUser2> {
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       updateLocation();
+      _DashboardUserState2();
     });
   }
 
-  List<double> currentLocation2 = [9.917075, -67.369107]; //villa o
-  List<double> currentLocation3 = [9.916617, -67.369704]; //casaA
-  List<double> currentLocation4 = [9.91584, -67.370645]; //evaristo
-  List<double> currentLocation5 = [9.915256, -67.372681]; //bellavista
-  List<double> currentLocation7 = [9.914571, -67.374399]; //agronomia
-  List<double> currentLocation8 = [9.910851, -67.378603]; //ingenieria
-  List<double> currentLocation9 = [9.906829, -67.381220]; //rectorado
-  List<double> currentLocation10 = [9.904663, -67.384396]; //sector4 brisas
-  List<double> currentLocation11 = [9.903085, -67.387676]; //sector2 brisas
-  List<double> currentLocation12 = [9.901269, -67.391518]; //puerta negra
-  List<double> currentLocation13 = [9.900817, -67.396952]; //licoreria
-  List<double> currentLocation14 = [9.900311, -67.397383]; //panaderia Miranda
-  List<double> currentLocation15 = [
-    9.899950,
-    -67.396748
-  ]; //casona universitaria
-  List<double> currentLocation16 = [9.897291, -67.391353]; //banco de venezuela
-  List<double> currentLocation17 = [9.893479, -67.386363]; //redoma
-  List<double> currentLocation18 = [9.90058, -67.377366]; //redoma
-  List<double> currentLocation19 = [9.901914, -67.375369]; //redoma
-  List<double> currentLocation20 = [9.902517, -67.373323]; //redoma
-  List<double> currentLocation21 = [9.904325, -67.370644]; //redoma
-  List<double> currentLocation22 = [9.905035, -67.369275]; //redoma
-  List<double> currentLocation23 = [9.904025, -67.367116]; //redoma
-  List<double> currentLocation24 = [9.904701, -67.364808]; //redoma
-  List<double> currentLocation25 = [9.905266, -67.364139]; //redoma
-  List<double> currentLocation26 = [9.909193, -67.362551]; //redoma
-  List<double> currentLocation27 = [9.908670, -67.361130]; //redoma
-  List<double> currentLocation28 = [9.907989, -67.361500]; //redoma
-  List<double> currentLocation29 = [9.907368, -67.360158]; //redoma
-  List<double> currentLocation30 = [9.908454, -67.358935]; //redoma
-  List<double> currentLocation31 = [9.909626, -67.357939]; //redoma
-  List<double> currentLocation32 = [9.910821, -67.356954]; //redoma
-  List<double> currentLocation33 = [9.910821, -67.356954]; //redoma
-  List<double> currentLocation34 = [9.912050, -67.355611]; //redoma
-  List<double> currentLocation35 = [9.912815, -67.356194]; //redoma
-  List<double> currentLocation36 = [9.914261, -67.358010]; //redoma
-  List<double> currentLocation37 = [9.915310, -67.361288]; //redoma
-  List<double> currentLocation38 = [9.916149, -67.362734]; //redoma
-  List<double> currentLocation39 = [9.917078, -67.365971]; //redoma
-  List<double> currentLocation40 = [9.917732, -67.368369]; //redoma
+  List<double> currentLocation2 = [9.917650, -67.368466]; //villa o
+  List<double> currentLocation3 = [9.916119, -67.370300]; //casaA
+  List<double> currentLocation4 = [9.913859, -67.375480]; //evaristo
+  List<double> currentLocation5 = [9.910774, -67.378669]; //bellavista
+  List<double> currentLocation7 = [9.900672, -67.396340]; //agronomia
+  List<double> currentLocation8 = [9.897285, -67.391315]; //ingenieria
+  List<double> currentLocation9 = [9.893449, -67.386232]; //rectorado
+  List<double> currentLocation10 = [9.901624, -67.374666]; //sector4 brisas
+  List<double> currentLocation11 = [9.901933, -67.372808]; //sector2 brisas
+  List<double> currentLocation12 = [9.905955, -67.369895]; //puerta negra
+  List<double> currentLocation13 = [9.908804, -67.363805]; //licoreria
+  List<double> currentLocation14 = [9.909278, -67.362533]; //panaderia Miranda
+  List<double> currentLocation15 = [9.910046,-67.359247]; //casona universitaria
+  List<double> currentLocation16 = [9.912329, -67.357306]; //banco de venezuela
+  List<double> currentLocation17 = [9.912145, -67.357174]; //redoma
 
-  List<double> currentLocation = [9.917075, -67.369107];
+  List<double> currentLocation = [9.893449, -67.386232];
   String selectedValueTop = 'Agronomia';
   String selectedValueBottom = 'Av.Bolivar';
 
   List<List<double>> getCoordinates() {
     return [
-      [9.917075, -67.369107],
-      [9.916617, -67.369704],
-      [9.91584, -67.370645],
-      [9.915256, -67.372681],
-      [9.914571, -67.374399],
-      [9.910851, -67.378603],
-      [9.906829, -67.381220],
-      [9.904663, -67.384396],
-      [9.903085, -67.387676],
-      [9.901269, -67.391518],
-      [9.900817, -67.396952],
-      [9.900311, -67.397383],
-      [9.899950, -67.396748],
-      [9.897291, -67.391353],
-      [9.893479, -67.386363],
-      [9.90058, -67.377366],
-      [9.901914, -67.375369],
-      [9.902517, -67.373323],
-      [9.904325, -67.370644],
-      [9.905035, -67.369275],
-      [9.904025, -67.367116],
-      [9.904701, -67.364808],
-      [9.905266, -67.364139],
-      [9.909193, -67.362551],
-      [9.908670, -67.361130],
-      [9.907989, -67.361500],
-      [9.907368, -67.360158],
-      [9.908454, -67.358935],
-      [9.909626, -67.357939],
-      [9.910821, -67.356954],
-      [9.912050, -67.355611],
-      [9.912815, -67.356194],
-      [9.914261, -67.358010],
-      [9.915310, -67.361288],
-      [9.916149, -67.362734],
-      [9.917078, -67.365971],
-      [9.917732, -67.368369],
+      [9.893449, -67.386232],
+      [9.901624, -67.374666],
+      [9.901933, -67.372808],
+      [9.905955, -67.369895],
+      [9.908804, -67.363805],
+      [9.909278, -67.362533],
+      [9.910046,-67.359247],
+      [9.912329, -67.357306],
+      [9.912145, -67.357174],
+      [9.917650, -67.368466],
+      [9.916119, -67.370300],
+      [9.913859, -67.375480],
+      [9.910774, -67.378669],
+      [9.900672, -67.396340],
+      [9.897285, -67.391315],
     ];
   }
 
   void updateLocation() async {
     for (var coordinate in getCoordinates()) {
-      await Future.delayed(const Duration(seconds: 4), () {
+      await Future.delayed(const Duration(seconds: 10), () {
         setState(() {
           currentLocation = coordinate;
         });
@@ -249,23 +202,12 @@ class _DashboardUserState extends State<DashboardUser> {
                 'id': 'mapbox/streets-v11',
               },
             ),
-            PolylineLayer(
-              polylines: [
-                Polyline(
-                  points: getCoordinates()
-                      .map((coord) => LatLng(coord[0], coord[1]))
-                      .toList(),
-                  strokeWidth: 6.0,
-                  color: Colors.grey,
-                ),
-              ],
-            ),
             MarkerLayer(markers: [
               Marker(
                 width: 200.0,
                 height: 200.0,
                 point: LatLng(currentLocation[0], currentLocation[1]),
-                child: const Icon(Icons.bus_alert_outlined,
+                child: const Icon(Icons.bus_alert,
                     color: Colors.black, size: 50.0),
               ),
               Marker(
@@ -275,7 +217,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Colors.red,
+                  color: Color.fromRGBO(65, 75, 178, 1),
                 ),
               ),
               Marker(
@@ -335,7 +277,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Colors.red,
+                  color: Color.fromRGBO(65, 75, 178, 1),
                 ),
               ),
               Marker(
@@ -355,7 +297,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Colors.red,
+                  color: Color.fromRGBO(65, 75, 178, 1),
                 ),
               ),
               Marker(
@@ -385,7 +327,7 @@ class _DashboardUserState extends State<DashboardUser> {
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
-                  color: Colors.red,
+                  color: Color.fromRGBO(65, 75, 178, 1),
                 ),
               ),
               Marker(
@@ -412,236 +354,6 @@ class _DashboardUserState extends State<DashboardUser> {
                 width: 80.0,
                 height: 80.0,
                 point: LatLng(currentLocation17[0], currentLocation17[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation18[0], currentLocation18[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation19[0], currentLocation19[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation20[0], currentLocation20[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation21[0], currentLocation21[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation22[0], currentLocation22[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation23[0], currentLocation23[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation24[0], currentLocation24[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation25[0], currentLocation25[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation26[0], currentLocation26[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation27[0], currentLocation27[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation28[0], currentLocation28[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation29[0], currentLocation29[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation30[0], currentLocation30[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation31[0], currentLocation31[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation32[0], currentLocation32[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation33[0], currentLocation33[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation34[0], currentLocation34[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation35[0], currentLocation35[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation36[0], currentLocation36[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation37[0], currentLocation37[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation38[0], currentLocation38[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation39[0], currentLocation39[1]),
-                child: const Icon(
-                  Icons.location_pin,
-                  size: 40.0,
-                  color: Color.fromRGBO(65, 75, 178, 1),
-                ),
-              ),
-              Marker(
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(currentLocation40[0], currentLocation40[1]),
                 child: const Icon(
                   Icons.location_pin,
                   size: 40.0,
