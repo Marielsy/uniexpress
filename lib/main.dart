@@ -16,15 +16,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'SplashScreen',
-      routes: {
-        'SplashScreen': (_) => const SplashScreen(),
-        'ScreenSelect': (_) => const ScreenSelect(),
-        'loginAdmin': (_) => const LoginAdmin(),
-        'registerPage':(_) => const RegisterPage(),
-      },
+      return  MaterialApp(
+       debugShowCheckedModeBanner: false,
+         initialRoute: 'SplashScreen',
+       routes: {
+         'SplashScreen': (_) =>  const SplashScreen(),
+       'ScreenSelect': (_) => const ScreenSelect(),
+         'loginAdmin': (_) => const LoginAdmin(),
+       'registerPage':(_) => const RegisterPage(),
+        },
     );
   }
 }

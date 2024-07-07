@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+	<key>MBXAccessToken</key>
+    <string>https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}N</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Necesito saber tu ubicacion</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -47,7 +52,6 @@
     <true/> 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>[Your explanation here]</string>
+
 </dict>
 </plist>

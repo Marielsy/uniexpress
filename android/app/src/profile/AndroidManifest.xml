@@ -3,5 +3,18 @@
          the Flutter tool needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <application
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="uniexpress"
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true"> <!-- Ajusta aquí -->
+        
+        <meta-data
+            android:name="com.mapbox.token"
+            android:value="pk.eyJ1IjoiY2FydmFqYWxtYXJpZWxzeSIsImEiOiJja3VvMzJtN28wMDA2MnBtMWc1c2ZyY3g5In0.XzknMqNCOBNtUgnHKvCHhg" /> <!-- Ajusta aquí tu token de Mapbox -->
+        
+        <!-- Resto de tu configuración de la aplicación -->
+        <meta-data />
+    </application>
 </manifest>
